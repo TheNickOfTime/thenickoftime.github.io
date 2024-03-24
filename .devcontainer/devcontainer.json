@@ -3,11 +3,20 @@
 {
 	"name": "dev-portfolio",
 	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
+	"appPort": ["9999:9999"],
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "lts"
 		}
 	},
-	"appPort": ["9999:9999"],
-	"runArgs": ["--name", "dev-portfolio"]
+	"runArgs": ["--name", "dev-portfolio"],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"christian-kohler.npm-intellisense",
+				"esbenp.prettier-vscode"
+			]
+		}
+	}
 }
