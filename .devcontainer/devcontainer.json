@@ -3,7 +3,6 @@
 {
 	"name": "dev-portfolio",
 	"image": "mcr.microsoft.com/devcontainers/base:bookworm",
-	"appPort": ["9999:9999"],
 	"features": {
 		"ghcr.io/devcontainers/features/node:1": {
 			"version": "lts"
