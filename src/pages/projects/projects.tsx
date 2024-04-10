@@ -3,7 +3,7 @@ import ProjectCard from '../../components/project-card/project-card';
 
 export default function Projects() {
 	const projects = import.meta.glob('/src/projects/portfolio/*.mdx', { eager: true });
-	console.log(projects);
+	// console.log(projects);
 
 	return (
 		<div>
@@ -16,6 +16,7 @@ export default function Projects() {
 								projectName={project.projectName}
 								projectThumb={project.projectThumb}
 								projectLinks={project.projectLinks}
+								projectTags={project.projectTags}
 							/>
 						);
 					})}
