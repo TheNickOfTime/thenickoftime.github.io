@@ -1,4 +1,5 @@
 @import '/src/styles/colors';
+@import '/src/styles/text';
 
 .project-card {
 	// width: 40rem;
@@ -18,6 +19,10 @@
 	.project-info {
 		padding: 1.5rem;
 
+		h5 {
+			margin: 1rem 0 0.25rem 0;
+		}
+
 		.project-name {
 			margin: 0 0 1rem 0;
 		}
@@ -25,31 +30,60 @@
 		.project-description {
 			margin: 0;
 		}
-	}
 
-	.project-quicklinks {
-		padding: 1.5rem;
-		display: flex;
-		flex-direction: row;
-		flex-wrap: wrap;
-		gap: 1rem;
-
-		.quicklink-button {
+		.project-tags {
 			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+
+			.project-tag {
+				padding: 0.25rem 0.75rem;
+
+				display: flex;
+				align-items: center;
+				gap: 1rem;
+
+				border-radius: 1rem;
+
+				font-family: $font-secondary;
+				font-size: 1.5rem;
+
+				background-color: $color-secondary;
+
+				.tag-icon {
+					height: 1.25rem;
+				}
+
+				.tag-label {
+					margin-bottom: 0.25rem;
+				}
+			}
+		}
+
+		.project-quicklinks {
+			// padding: 1.5rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
 			gap: 1rem;
-			align-items: center;
 
-			box-shadow: 0 0 5px $background-primary;
+			.quicklink-button {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
 
-			color: $background-secondary;
-		}
+				box-shadow: 0 0 5px $background-primary;
 
-		.quicklink-icon {
-			font-size: 2rem;
-		}
+				color: $background-secondary;
+			}
 
-		.quicklink-label {
-			margin-bottom: 0.25rem;
+			.quicklink-icon {
+				font-size: 2rem;
+			}
+
+			.quicklink-label {
+				margin-bottom: 0.25rem;
+			}
 		}
 	}
 
@@ -72,7 +106,4 @@
 			background-color: $background-tertiary;
 		}
 	}
-	// .project-quicklink-dropdown:hover {
-	// 	background-color: $background-tertiary;
-	// }
 }
