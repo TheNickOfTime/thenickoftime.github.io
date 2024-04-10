@@ -1,0 +1,78 @@
+@import '/src/styles/colors';
+
+.project-card {
+	// width: 40rem;
+
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	border-radius: 2rem;
+
+	background-color: $background-secondary;
+
+	// .project-image {
+
+	// }
+
+	.project-info {
+		padding: 1.5rem;
+
+		.project-name {
+			margin: 0 0 1rem 0;
+		}
+
+		.project-description {
+			margin: 0;
+		}
+	}
+
+	.project-quicklinks {
+		padding: 1.5rem;
+		display: flex;
+		flex-direction: row;
+		flex-wrap: wrap;
+		gap: 1rem;
+
+		.quicklink-button {
+			display: flex;
+			gap: 1rem;
+			align-items: center;
+
+			box-shadow: 0 0 5px $background-primary;
+
+			color: $background-secondary;
+		}
+
+		.quicklink-icon {
+			font-size: 2rem;
+		}
+
+		.quicklink-label {
+			margin-bottom: 0.25rem;
+		}
+	}
+
+	.project-quicklink-dropdown {
+		padding-top: 0.25rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.quicklink-label {
+			font-size: 1rem;
+		}
+
+		.quicklink-dropdown {
+			margin: -0.5rem;
+		}
+
+		&:hover {
+			background-color: $background-tertiary;
+		}
+	}
+	// .project-quicklink-dropdown:hover {
+	// 	background-color: $background-tertiary;
+	// }
+}
