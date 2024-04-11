@@ -1,0 +1,22 @@
+@import '/src/styles/colors';
+
+.projects-toolbar {
+	margin-bottom: 2rem;
+
+	display: flex;
+	flex-direction: row;
+	gap: 2rem;
+
+	.toolbar-section {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 1rem;
+	}
+
+	.toolbar-separator {
+		width: 1px;
+		background-color: $text-primary;
+		box-shadow: 0 0 3px 1px $background-shadow;
+	}
+}
