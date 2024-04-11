@@ -2,6 +2,9 @@ import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDocker, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCaretUp, faCaretDown, faTag } from '@fortawesome/free-solid-svg-icons';
+
+import { Project } from '../project-browser/project-browser';
+
 import './project-card.scss';
 
 const linkLookup = {
@@ -9,17 +12,7 @@ const linkLookup = {
 	codespace: { icon: faDocker, label: 'Open in Github Codespace' },
 };
 
-export default function ProjectCard({
-	projectName,
-	projectThumb,
-	projectLinks,
-	projectTags,
-}: {
-	projectName: string;
-	projectThumb: string;
-	projectLinks: object;
-	projectTags: [string];
-}) {
+export default function ProjectCard({ project }: { project: Project }) {
 	const [isExpanded, setExpanded] = useState(false);
 
 	const toggleQuicklinks = () => {
@@ -30,7 +23,7 @@ export default function ProjectCard({
 		// console.log(projectTags);
 		return (
 			<div className='project-tags'>
-				{projectTags.map((tag: string) => {
+				{project.projectTags.map((tag: string) => {
 					return (
 						<span className='project-tag'>
 							<FontAwesomeIcon className='tag-icon' icon={faTag} />
@@ -45,7 +38,7 @@ export default function ProjectCard({
 	const renderQuicklinks = () => {
 		return (
 			<div className='project-quicklinks'>
-				{Object.entries(projectLinks).map((entry) => {
+				{Object.entries(project.projectLinks).map((entry) => {
 					const link: string = entry[1];
 					const linkData: object = linkLookup[entry[0]];
 					// console.log(linkData);
@@ -86,9 +79,9 @@ export default function ProjectCard({
 
 	return (
 		<div className='project-card elevated'>
-			<img className='project-image' src={projectThumb} alt='' />
+			<img className='project-image' src={project.projectThumb} alt='' />
 			<div className='project-info'>
-				<h3 className='project-name'>{projectName}</h3>
+				<h3 className='project-name'>{project.projectName}</h3>
 				<p className='project-description'>This is a description for a project.</p>
 				{isExpanded && renderMore()}
 			</div>
