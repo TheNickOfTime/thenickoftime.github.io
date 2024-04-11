@@ -13,7 +13,7 @@ export default function Navigation() {
 				<ul>
 					{Object.entries(navEntries).map((entry) => {
 						return (
-							<li>
+							<li key={entry[0].toLowerCase()}>
 								<NavLink to={entry[1]}>{entry[0]}</NavLink>
 							</li>
 						);
