@@ -48,9 +48,19 @@ export default function ToolbarDropdown({ label, icon, options, setOptions }: Pa
 
 	const DropdownList = () => {
 		if (renderList) {
+			const sortedOptions = Object.keys(options).sort((a, b) => {
+				if (a.toLowerCase() > b.toLowerCase()) {
+					return 1;
+				} else if (a.toLowerCase() < b.toLowerCase()) {
+					return -1;
+				} else {
+					return 0;
+				}
+			});
+
 			return (
 				<div className='dropdown-list'>
-					{Object.keys(options).map((option: string) => (
+					{sortedOptions.map((option: string) => (
 						<DropdownOption optionName={option} key={option} />
 					))}
 				</div>
