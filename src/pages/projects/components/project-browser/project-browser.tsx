@@ -13,6 +13,7 @@ export interface Project {
 	projectThumb: string;
 	projectTags: string[];
 	projectLinks: { [index: string]: string };
+	projectFeatured?: number;
 }
 
 export interface Projects {

@@ -32,7 +32,14 @@ export default function ProjectGrid({
 	};
 
 	const sortFeatured = (projects: Project[]) => {
-		return sortAlphabetical(projects);
+		const sortedProjects = sortAlphabetical(projects).sort((a, b) => {
+			const aRank = a.projectFeatured ? a.projectFeatured : 0;
+			const bRank = b.projectFeatured ? b.projectFeatured : 0;
+
+			return bRank - aRank;
+		});
+
+		return sortedProjects;
 	};
 
 	const sortProjects = (projects: Project[]) => {
