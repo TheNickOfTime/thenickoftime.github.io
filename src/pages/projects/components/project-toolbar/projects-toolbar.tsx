@@ -8,26 +8,26 @@ import './projects-toolbar.scss';
 
 // Types -------------------------------------------------------------------------------------------
 interface Params {
+	projectCount: number;
 	tags: { [index: string]: boolean };
 	setTags: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
 }
 
 // Component ---------------------------------------------------------------------------------------
-export default function ProjectsToolbar({ tags: options, setTags: setOptions }: Params) {
+export default function ProjectsToolbar({ projectCount, tags, setTags }: Params) {
 	// console.log(options);
 
 	return (
 		<div className='projects-toolbar'>
+			<div className='toolbar-section'>
+				<span>{projectCount} Projects</span>
+			</div>
+			<div className='toolbar-separator' />
 			<div className='toolbar-section toolbar-filters'>
 				<span>
 					<FontAwesomeIcon icon={faFilter} /> Filters:
 				</span>
-				<ToolbarDropdown
-					label='Tags'
-					icon={faTag}
-					options={options}
-					setOptions={setOptions}
-				/>
+				<ToolbarDropdown label='Tags' icon={faTag} options={tags} setOptions={setTags} />
 			</div>
 			<div className='toolbar-separator' />
 			<div className='toolbar-section toolbar-sorting'>

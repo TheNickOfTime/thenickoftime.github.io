@@ -46,7 +46,11 @@ export function ProjectBrowser() {
 	return (
 		<div id='project-browser'>
 			{/* <ProjectBrowserContext.Provider value={context}> */}
-			<ProjectsToolbar tags={tags} setTags={setTags} />
+			<ProjectsToolbar
+				projectCount={Object.entries(projects).length}
+				tags={tags}
+				setTags={setTags}
+			/>
 			<ProjectGrid tags={tags} projects={projects} />
 			{/* </ProjectBrowserContext.Provider> */}
 		</div>
