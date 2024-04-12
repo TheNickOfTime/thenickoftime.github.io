@@ -20,7 +20,9 @@ export default function ProjectsToolbar({ projectCount, tags, setTags }: Params)
 	return (
 		<div className='projects-toolbar'>
 			<div className='toolbar-section'>
-				<span>{projectCount} Projects</span>
+				<span>
+					<strong>{projectCount} Projects</strong>
+				</span>
 			</div>
 			<div className='toolbar-separator' />
 			<div className='toolbar-section toolbar-filters'>

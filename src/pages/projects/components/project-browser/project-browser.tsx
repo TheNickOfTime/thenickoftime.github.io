@@ -42,16 +42,13 @@ export function ProjectBrowser() {
 
 	// State -------------------------------------------------------------------
 	const [tags, setTags] = useState(initialTags);
+	const [projectCount, setProjectCount] = useState(0);
 
 	return (
 		<div id='project-browser'>
 			{/* <ProjectBrowserContext.Provider value={context}> */}
-			<ProjectsToolbar
-				projectCount={Object.entries(projects).length}
-				tags={tags}
-				setTags={setTags}
-			/>
-			<ProjectGrid tags={tags} projects={projects} />
+			<ProjectsToolbar projectCount={projectCount} tags={tags} setTags={setTags} />
+			<ProjectGrid tags={tags} projects={projects} setProjectCount={setProjectCount} />
 			{/* </ProjectBrowserContext.Provider> */}
 		</div>
 	);
