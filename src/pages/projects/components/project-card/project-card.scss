@@ -12,9 +12,9 @@
 
 	background-color: $background-secondary;
 
-	// .project-image {
-
-	// }
+	.project-image {
+		aspect-ratio: 16/9;
+	}
 
 	.project-info {
 		padding: 1.5rem;
