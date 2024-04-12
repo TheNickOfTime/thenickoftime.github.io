@@ -1,5 +1,5 @@
 // Dependencies ------------------------------------------------------------------------------------
-import { useState } from 'react';
+import { /*createContext,*/ useState } from 'react';
 
 import { MDXContent } from 'mdx/types';
 
@@ -23,6 +23,9 @@ export interface Tags {
 	[index: string]: boolean;
 }
 
+// Context -----------------------------------------------------------------------------------------
+// const ProjectBrowserContext = createContext();
+
 // Component ---------------------------------------------------------------------------------------
 export function ProjectBrowser() {
 	// Variables ---------------------------------------------------------------
@@ -40,15 +43,44 @@ export function ProjectBrowser() {
 		return { ...previous, ...Object.fromEntries(uniqueKeys) };
 	}, {});
 
+	const sortingOptions: string[] = [
+		'Featured',
+		'Alphabetical',
+		// 'Date'
+	];
+
+	const sortingOrder: string[] = ['Ascending', 'Descending'];
+
 	// State -------------------------------------------------------------------
 	const [tags, setTags] = useState(initialTags);
 	const [projectCount, setProjectCount] = useState(0);
+	const [sortBy, setSortBy] = useState(sortingOptions[0]);
+	const [sortOrder, setSortOrder] = useState(sortingOrder[1]);
 
 	return (
 		<div id='project-browser'>
 			{/* <ProjectBrowserContext.Provider value={context}> */}
-			<ProjectsToolbar projectCount={projectCount} tags={tags} setTags={setTags} />
-			<ProjectGrid tags={tags} projects={projects} setProjectCount={setProjectCount} />
+			<ProjectsToolbar
+				// Projects
+				projectCount={projectCount}
+				// Tags
+				tags={tags}
+				setTags={setTags}
+				// Sorting
+				sortingOptions={sortingOptions}
+				sortBy={sortBy}
+				setSortBy={setSortBy}
+				sortingOrder={sortingOrder}
+				sortOrder={sortOrder}
+				setSortOrder={setSortOrder}
+			/>
+			<ProjectGrid
+				projects={projects}
+				setProjectCount={setProjectCount}
+				tags={tags}
+				sortBy={sortBy}
+				sortOrder={sortOrder}
+			/>
 			{/* </ProjectBrowserContext.Provider> */}
 		</div>
 	);
