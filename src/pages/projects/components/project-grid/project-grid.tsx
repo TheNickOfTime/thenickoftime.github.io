@@ -4,12 +4,21 @@ import { Project, Projects, Tags } from '../project-browser/project-browser';
 interface Params {
 	projects: Projects;
 	tags: Tags;
+	setProjectCount: React.Dispatch<React.SetStateAction<number>>;
 }
 
-export default function ProjectGrid({ projects, tags }: Params) {
+export default function ProjectGrid({ projects, tags, setProjectCount }: Params) {
 	// console.log(Object.values(tags));
 
 	const shouldFilter = !Object.values(tags).every((tag) => !tag);
+
+	const unfilteredProjects = () => {
+		const projectsUnfiltered = Object.values(projects);
+
+		setProjectCount(projectsUnfiltered.length);
+
+		return projectsUnfiltered;
+	};
 
 	const filteredProjects = () => {
 		const projectsUnfiltered = Object.values(projects);
@@ -21,11 +30,13 @@ export default function ProjectGrid({ projects, tags }: Params) {
 
 		const projectsFiltered = tagsFiltered;
 
+		setProjectCount(projectsFiltered.length);
+
 		return projectsFiltered;
 	};
 
 	const Projects = () => {
-		const projectsToRender = shouldFilter ? filteredProjects() : Object.values(projects);
+		const projectsToRender = shouldFilter ? filteredProjects() : unfilteredProjects();
 
 		return projectsToRender.map((project: Project) => {
 			return <ProjectCard project={project} key={project.projectName} />;
