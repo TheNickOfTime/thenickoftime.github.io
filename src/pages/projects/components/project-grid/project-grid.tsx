@@ -1,9 +1,10 @@
 import ProjectCard from '../project-card/project-card';
-import { Project, Projects, Tags } from '../project-browser/project-browser';
+import { Project, Projects, MultiselectOptions } from 'src/types/project';
 
 interface Params {
 	projects: Projects;
-	tags: Tags;
+	tags: MultiselectOptions;
+	types: MultiselectOptions;
 	setProjectCount: React.Dispatch<React.SetStateAction<number>>;
 	sortBy: string;
 	sortOrder: string;
@@ -13,17 +14,16 @@ export default function ProjectGrid({
 	projects,
 	setProjectCount,
 	tags,
+	types,
 	sortBy,
 	sortOrder,
 }: Params) {
 	// console.log(Object.values(tags));
 
-	const shouldFilter = !Object.values(tags).every((tag) => !tag);
-
 	const sortAlphabetical = (projects: Project[]) => {
 		const sortedProjects = projects.sort((a, b) => {
-			const after = a.projectName.toLowerCase() > b.projectName.toLowerCase();
-			const before = a.projectName.toLowerCase() < b.projectName.toLowerCase();
+			const after = a.metadata.name.toLowerCase() > b.metadata.name.toLowerCase();
+			const before = a.metadata.name.toLowerCase() < b.metadata.name.toLowerCase();
 
 			return after ? 1 : before ? -1 : 0;
 		});
@@ -33,8 +33,8 @@ export default function ProjectGrid({
 
 	const sortFeatured = (projects: Project[]) => {
 		const sortedProjects = sortAlphabetical(projects).sort((a, b) => {
-			const aRank = a.projectFeatured ? a.projectFeatured : 0;
-			const bRank = b.projectFeatured ? b.projectFeatured : 0;
+			const aRank = a.metadata.featured ? a.metadata.featured : 0;
+			const bRank = b.metadata.featured ? b.metadata.featured : 0;
 
 			return bRank - aRank;
 		});
@@ -53,18 +53,32 @@ export default function ProjectGrid({
 		}
 	};
 
-	const unfilteredProjects = (projects: Project[]) => {
-		setProjectCount(projects.length);
-
-		return projects;
-	};
-
-	const filteredProjects = (projects: Project[]) => {
-		const projectsFiltered = projects.filter((project) => {
+	const filterTags = (projects: Project[]) => {
+		return projects.filter((project) => {
+			// Filter Tags
 			const currentTags = Object.keys(tags).filter((key) => tags[key]);
-			const projectInTags = project.projectTags.some((tag) => currentTags.includes(tag));
+			const projectInTags = project.metadata.tags.some((tag) => currentTags.includes(tag));
 			return projectInTags;
 		});
+	};
+
+	const filterTypes = (projects: Project[]) => {
+		return projects.filter((project) => {
+			// Filter types
+			const currentTypes = Object.keys(types).filter((key) => types[key]);
+			const projectInTypes = currentTypes.includes(project.metadata.type);
+			return projectInTypes;
+		});
+	};
+
+	const filterProjects = (projects: Project[]) => {
+		let projectsFiltered = projects;
+
+		const shouldFilterTags = !Object.values(tags).every((tag) => !tag);
+		projectsFiltered = shouldFilterTags ? filterTags(projectsFiltered) : projectsFiltered;
+
+		const shouldFilterTypes = !Object.values(types).every((type) => !type);
+		projectsFiltered = shouldFilterTypes ? filterTypes(projectsFiltered) : projectsFiltered;
 
 		setProjectCount(projectsFiltered.length);
 
@@ -74,12 +88,10 @@ export default function ProjectGrid({
 	const Projects = () => {
 		let projectsToRender = Object.values(projects);
 		projectsToRender = sortProjects(projectsToRender);
-		projectsToRender = shouldFilter
-			? filteredProjects(projectsToRender)
-			: unfilteredProjects(projectsToRender);
+		projectsToRender = filterProjects(projectsToRender);
 
 		return projectsToRender.map((project: Project) => {
-			return <ProjectCard project={project} key={project.projectName} />;
+			return <ProjectCard project={project} key={project.metadata.name} />;
 		});
 	};
 
