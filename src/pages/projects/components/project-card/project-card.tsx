@@ -1,29 +1,83 @@
 import { useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDocker, faGithub } from '@fortawesome/free-brands-svg-icons';
-import { faCaretUp, faCaretDown, faTag } from '@fortawesome/free-solid-svg-icons';
+import {
+	faCaretUp,
+	faCaretDown,
+	faTag,
+	faUpRightFromSquare,
+} from '@fortawesome/free-solid-svg-icons';
 
 import { Project } from 'src/types/project';
 
 import './project-card.scss';
+// import { metadata } from 'src/projects/portfolio/25+5-clock.mdx';
 
 const linkLookup = {
+	live: { icon: faUpRightFromSquare, label: 'View Live' },
 	github: { icon: faGithub, label: 'View Source Code' },
 	codespace: { icon: faDocker, label: 'Open in Github Codespace' },
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
+	const href = project.metadata.link ? project.metadata.link : project.metadata.links['github'];
+
 	const [isExpanded, setExpanded] = useState(false);
 
 	const toggleQuicklinks = () => {
 		setExpanded(!isExpanded);
 	};
 
-	const renderTags = () => {
+	const ProjectImage = () => {
+		return (
+			<a className='project-image' href={href}>
+				<img className='project-image' src={project.metadata.thumb} alt='' />
+			</a>
+		);
+	};
+
+	const ProjectTitle = () => {
+		return (
+			<h3 className='project-name'>
+				<a href={href}>{project.metadata.name}</a>
+			</h3>
+		);
+	};
+
+	const ProjectDescription = () => {
+		if (project.metadata.description) {
+			return <p className='project-description'>{project.metadata.description}</p>;
+		} else {
+			if (!isExpanded) {
+				return <Tags />;
+			}
+		}
+	};
+
+	const Dropdown = () => {
+		return (
+			<div className='project-quicklink-dropdown' onClick={toggleQuicklinks}>
+				<span className='quicklink-label'>{isExpanded ? 'See Less' : 'See More'}</span>
+				{isExpanded ? (
+					<FontAwesomeIcon icon={faCaretUp} />
+				) : (
+					<FontAwesomeIcon icon={faCaretDown} />
+				)}
+			</div>
+		);
+	};
+
+	const Tags = () => {
 		// console.log(projectTags);
+		const tagsSorted = project.metadata.tags.sort((a, b) => {
+			const after = a.toLowerCase() > b.toLowerCase();
+			const before = a.toLowerCase() < b.toLowerCase();
+
+			return after ? 1 : before ? -1 : 0;
+		});
 		return (
 			<div className='project-tags'>
-				{project.metadata.tags.map((tag: string) => {
+				{tagsSorted.map((tag: string) => {
 					return (
 						<span className='project-tag'>
 							<FontAwesomeIcon className='tag-icon' icon={faTag} />
@@ -35,7 +89,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 		);
 	};
 
-	const renderQuicklinks = () => {
+	const Quicklinks = () => {
 		return (
 			<div className='project-quicklinks'>
 				{Object.entries(project.metadata.links).map((entry) => {
@@ -53,39 +107,28 @@ export default function ProjectCard({ project }: { project: Project }) {
 		);
 	};
 
-	const renderDropdown = () => {
-		return (
-			<div className='project-quicklink-dropdown' onClick={toggleQuicklinks}>
-				<span className='quicklink-label'>{isExpanded ? 'See Less' : 'See More'}</span>
-				{isExpanded ? (
-					<FontAwesomeIcon icon={faCaretUp} />
-				) : (
-					<FontAwesomeIcon icon={faCaretDown} />
-				)}
-			</div>
-		);
-	};
-
-	const renderMore = () => {
-		return (
-			<div className='project-more-info'>
-				<h5>Tags</h5>
-				{renderTags()}
-				<h5>Links</h5>
-				{renderQuicklinks()}
-			</div>
-		);
+	const ProjectDetails = () => {
+		if (isExpanded) {
+			return (
+				<div className='project-more-info'>
+					<h5>Tags</h5>
+					<Tags />
+					<h5>Links</h5>
+					<Quicklinks />
+				</div>
+			);
+		}
 	};
 
 	return (
 		<div className='project-card elevated'>
-			<img className='project-image' src={project.metadata.thumb} alt='' />
+			<ProjectImage />
 			<div className='project-info'>
-				<h3 className='project-name'>{project.metadata.name}</h3>
-				<p className='project-description'>This is a description for a project.</p>
-				{isExpanded && renderMore()}
+				<ProjectTitle />
+				<ProjectDescription />
+				<ProjectDetails />
 			</div>
-			{renderDropdown()}
+			<Dropdown />
 		</div>
 	);
 }

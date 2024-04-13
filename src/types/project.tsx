@@ -1,8 +1,10 @@
 import { MDXContent } from 'mdx/types';
 
 export interface ProjectMetadata {
-	name: string;
 	thumb: string;
+	name: string;
+	description?: string;
+	link?: string;
 	links: { [index: string]: string };
 	tags: string[];
 	featured: number;
