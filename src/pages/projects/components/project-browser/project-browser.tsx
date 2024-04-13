@@ -37,6 +37,8 @@ export function ProjectBrowser() {
 		{}
 	);
 
+	const showOptions: string[] = ['Featured Only', 'All'];
+
 	// Define sorting options & order
 	const sortingOptions: string[] = [
 		'Featured',
@@ -47,6 +49,7 @@ export function ProjectBrowser() {
 	const sortingOrder: string[] = ['Ascending', 'Descending'];
 
 	// State -------------------------------------------------------------------
+	const [show, setShow] = useState(showOptions[0]);
 	const [tags, setTags] = useState(allTags);
 	const [types, setTypes] = useState(allTypes);
 	const [projectCount, setProjectCount] = useState(0);
@@ -59,6 +62,10 @@ export function ProjectBrowser() {
 			<ProjectsToolbar
 				// Projects
 				projectCount={projectCount}
+				// Show
+				showOptions={showOptions}
+				show={show}
+				setShow={setShow}
 				// Tags
 				tags={tags}
 				setTags={setTags}
@@ -76,6 +83,7 @@ export function ProjectBrowser() {
 			<ProjectGrid
 				projects={projects}
 				setProjectCount={setProjectCount}
+				show={show}
 				tags={tags}
 				types={types}
 				sortBy={sortBy}
