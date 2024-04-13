@@ -3,7 +3,7 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDocker, faGithub } from '@fortawesome/free-brands-svg-icons';
 import { faCaretUp, faCaretDown, faTag } from '@fortawesome/free-solid-svg-icons';
 
-import { Project } from '../project-browser/project-browser';
+import { Project } from 'src/types/project';
 
 import './project-card.scss';
 
@@ -23,7 +23,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 		// console.log(projectTags);
 		return (
 			<div className='project-tags'>
-				{project.projectTags.map((tag: string) => {
+				{project.metadata.tags.map((tag: string) => {
 					return (
 						<span className='project-tag'>
 							<FontAwesomeIcon className='tag-icon' icon={faTag} />
@@ -38,7 +38,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 	const renderQuicklinks = () => {
 		return (
 			<div className='project-quicklinks'>
-				{Object.entries(project.projectLinks).map((entry) => {
+				{Object.entries(project.metadata.links).map((entry) => {
 					const link: string = entry[1];
 					const linkData: object = linkLookup[entry[0]];
 					// console.log(linkData);
@@ -79,9 +79,9 @@ export default function ProjectCard({ project }: { project: Project }) {
 
 	return (
 		<div className='project-card elevated'>
-			<img className='project-image' src={project.projectThumb} alt='' />
+			<img className='project-image' src={project.metadata.thumb} alt='' />
 			<div className='project-info'>
-				<h3 className='project-name'>{project.projectName}</h3>
+				<h3 className='project-name'>{project.metadata.name}</h3>
 				<p className='project-description'>This is a description for a project.</p>
 				{isExpanded && renderMore()}
 			</div>

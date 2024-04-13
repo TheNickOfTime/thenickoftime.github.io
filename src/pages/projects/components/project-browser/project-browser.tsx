@@ -1,28 +1,10 @@
 // Dependencies ------------------------------------------------------------------------------------
 import { /*createContext,*/ useState } from 'react';
 
-import { MDXContent } from 'mdx/types';
+import { Project, Projects, MultiselectOptions } from 'src/types/project';
 
 import ProjectsToolbar from '../project-toolbar/projects-toolbar';
 import ProjectGrid from '../project-grid/project-grid';
-
-//Types --------------------------------------------------------------------------------------------
-export interface Project {
-	default: MDXContent;
-	projectName: string;
-	projectThumb: string;
-	projectTags: string[];
-	projectLinks: { [index: string]: string };
-	projectFeatured?: number;
-}
-
-export interface Projects {
-	[key: string]: Project;
-}
-
-export interface Tags {
-	[index: string]: boolean;
-}
 
 // Context -----------------------------------------------------------------------------------------
 // const ProjectBrowserContext = createContext();
@@ -37,13 +19,25 @@ export function ProjectBrowser() {
 	});
 
 	// Get all unique tags from the projects
-	const initialTags: Tags = Object.values(projects).reduce((previous: Tags, current: Project) => {
-		const uniqueKeys = current.projectTags
-			.filter((key: string) => !Object.keys(previous).includes(key))
-			.map((key: string) => [key, false]);
-		return { ...previous, ...Object.fromEntries(uniqueKeys) };
-	}, {});
+	const allTags: MultiselectOptions = Object.values(projects).reduce(
+		(previous: MultiselectOptions, current: Project) => {
+			const uniqueKeys = current.metadata.tags
+				.filter((key: string) => !Object.keys(previous).includes(key))
+				.map((key: string) => [key, false]);
+			return { ...previous, ...Object.fromEntries(uniqueKeys) };
+		},
+		{}
+	);
 
+	const allTypes: MultiselectOptions = Object.values(projects).reduce(
+		(previous: MultiselectOptions, current: Project) => {
+			const unique = !Object.keys(previous).includes(current.metadata.type);
+			return unique ? { ...previous, ...{ [current.metadata.type]: false } } : previous;
+		},
+		{}
+	);
+
+	// Define sorting options & order
 	const sortingOptions: string[] = [
 		'Featured',
 		'Alphabetical',
@@ -53,7 +47,8 @@ export function ProjectBrowser() {
 	const sortingOrder: string[] = ['Ascending', 'Descending'];
 
 	// State -------------------------------------------------------------------
-	const [tags, setTags] = useState(initialTags);
+	const [tags, setTags] = useState(allTags);
+	const [types, setTypes] = useState(allTypes);
 	const [projectCount, setProjectCount] = useState(0);
 	const [sortBy, setSortBy] = useState(sortingOptions[0]);
 	const [sortOrder, setSortOrder] = useState(sortingOrder[1]);
@@ -67,6 +62,9 @@ export function ProjectBrowser() {
 				// Tags
 				tags={tags}
 				setTags={setTags}
+				// Types
+				types={types}
+				setTypes={setTypes}
 				// Sorting
 				sortingOptions={sortingOptions}
 				sortBy={sortBy}
@@ -79,6 +77,7 @@ export function ProjectBrowser() {
 				projects={projects}
 				setProjectCount={setProjectCount}
 				tags={tags}
+				types={types}
 				sortBy={sortBy}
 				sortOrder={sortOrder}
 			/>

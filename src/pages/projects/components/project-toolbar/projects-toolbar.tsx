@@ -11,6 +11,8 @@ interface Params {
 	projectCount: number;
 	tags: { [index: string]: boolean };
 	setTags: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
+	types: { [index: string]: boolean };
+	setTypes: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
 	sortingOptions: string[];
 	sortBy: string;
 	setSortBy: React.Dispatch<React.SetStateAction<string>>;
@@ -24,6 +26,8 @@ export default function ProjectsToolbar({
 	projectCount,
 	tags,
 	setTags,
+	types,
+	setTypes,
 	sortingOptions,
 	sortBy,
 	setSortBy,
@@ -50,6 +54,12 @@ export default function ProjectsToolbar({
 					icon={faTag}
 					multiselectOptions={tags}
 					setMultiselectOptions={setTags}
+				/>
+				<ToolbarDropdown
+					label='Types'
+					icon={faTag}
+					multiselectOptions={types}
+					setMultiselectOptions={setTypes}
 				/>
 			</div>
 			<div className='toolbar-separator' />
