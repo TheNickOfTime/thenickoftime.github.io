@@ -23,12 +23,14 @@ import Error404 from './pages/error/404.mdx';
 // Test pages
 import MarkdownTest from './pages/test/markdown/markdown';
 import StyleTest from './pages/test/style/style';
+import Header from './components/header/header';
 
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<main>
 			<Router>
+				<Header />
 				<Routes>
 					<Route path='/' element={<Navigation />}>
 						{/* Index Page */}
