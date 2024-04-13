@@ -3,6 +3,7 @@ import { Project, Projects, MultiselectOptions } from 'src/types/project';
 
 interface Params {
 	projects: Projects;
+	show: string;
 	tags: MultiselectOptions;
 	types: MultiselectOptions;
 	setProjectCount: React.Dispatch<React.SetStateAction<number>>;
@@ -13,6 +14,7 @@ interface Params {
 export default function ProjectGrid({
 	projects,
 	setProjectCount,
+	show,
 	tags,
 	types,
 	sortBy,
@@ -53,6 +55,10 @@ export default function ProjectGrid({
 		}
 	};
 
+	const filterFeatured = (projects: Project[]) => {
+		return projects.filter((project) => project.metadata.featured);
+	};
+
 	const filterTags = (projects: Project[]) => {
 		return projects.filter((project) => {
 			// Filter Tags
@@ -73,6 +79,11 @@ export default function ProjectGrid({
 
 	const filterProjects = (projects: Project[]) => {
 		let projectsFiltered = projects;
+
+		const shouldFilterFeatured = show == 'Featured Only';
+		projectsFiltered = shouldFilterFeatured
+			? filterFeatured(projectsFiltered)
+			: projectsFiltered;
 
 		const shouldFilterTags = !Object.values(tags).every((tag) => !tag);
 		projectsFiltered = shouldFilterTags ? filterTags(projectsFiltered) : projectsFiltered;

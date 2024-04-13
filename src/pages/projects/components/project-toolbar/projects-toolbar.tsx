@@ -5,6 +5,7 @@ import {
 	faArrowDownWideShort,
 	faArrowUpZA,
 	faArrowUpWideShort,
+	faAsterisk,
 	faFilter,
 	faFolderOpen,
 	faSort,
@@ -19,6 +20,9 @@ import './projects-toolbar.scss';
 // Types -------------------------------------------------------------------------------------------
 interface Params {
 	projectCount: number;
+	showOptions: string[];
+	show: string;
+	setShow: React.Dispatch<React.SetStateAction<string>>;
 	tags: { [index: string]: boolean };
 	setTags: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
 	types: { [index: string]: boolean };
@@ -34,6 +38,9 @@ interface Params {
 // Component ---------------------------------------------------------------------------------------
 export default function ProjectsToolbar({
 	projectCount,
+	showOptions,
+	show,
+	setShow,
 	tags,
 	setTags,
 	types,
@@ -46,6 +53,17 @@ export default function ProjectsToolbar({
 	setSortOrder,
 }: Params) {
 	// console.log(options);
+
+	const getShowIcon = () => {
+		switch (show) {
+			case 'All':
+				return faAsterisk;
+			case 'Featured Only':
+				return faStar;
+			default:
+				return faStar;
+		}
+	};
 
 	const getSortByIcon = () => {
 		switch (sortBy) {
@@ -81,6 +99,14 @@ export default function ProjectsToolbar({
 				<span>
 					<FontAwesomeIcon icon={faFilter} /> Filters:
 				</span>
+				<ToolbarDropdown
+					label={show}
+					icon={getShowIcon()}
+					singleselectOptions={showOptions}
+					selectedOption={show}
+					setSingleselectOption={setShow}
+					multiselect={false}
+				/>
 				<ToolbarDropdown
 					label='Tags'
 					icon={faTag}
