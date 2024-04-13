@@ -6,8 +6,9 @@ export default function Projects() {
 		<div>
 			<h1>Projects</h1>
 			<p>
-				Below you will find a list of <em>all</em> of the projects I have worked on, big &
-				small. For your convenience, please use the filtering and sorting options 😊.
+				Below lies <strong>the project browser</strong>. By default it will show featured
+				projects I want to highlight - if you're not seeing what you want, please use the{' '}
+				<em>filters</em> and <em>sorting</em> options to see more!
 			</p>
 			<br />
 			<ProjectBrowser />

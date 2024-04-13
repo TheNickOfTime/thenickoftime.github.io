@@ -90,9 +90,7 @@ export default function ProjectsToolbar({
 	return (
 		<div className='projects-toolbar'>
 			<div className='toolbar-section'>
-				<span>
-					<strong>{projectCount} Projects</strong>
-				</span>
+				<span>{projectCount} Projects</span>
 			</div>
 			<div className='toolbar-separator' />
 			<div className='toolbar-section toolbar-filters'>

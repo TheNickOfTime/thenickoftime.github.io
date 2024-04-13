@@ -13,6 +13,7 @@
 	background-color: $background-secondary;
 
 	.project-image {
+		width: 100%;
 		aspect-ratio: 16/9;
 	}
 
@@ -25,6 +26,15 @@
 
 		.project-name {
 			margin: 0 0 1rem 0;
+
+			a {
+				color: $text-primary;
+			}
+
+			a:hover {
+				color: $highlight-primary;
+				text-decoration: underline;
+			}
 		}
 
 		.project-description {

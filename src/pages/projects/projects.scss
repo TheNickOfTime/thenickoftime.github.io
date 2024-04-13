@@ -1,7 +1,16 @@
+@import '/src/styles/colors';
+
 #projects {
 	display: grid;
 	grid-template-columns: 33.3% 33.3% 33.3%;
 	gap: 2rem;
 	justify-content: space-between;
 	align-items: flex-start;
+}
+
+strong,
+em {
+	color: $highlight-primary;
+	// text-shadow: 0 0 3px $highlight-primary;
+	text-shadow: 0 0 5px $background-shadow;
 }
