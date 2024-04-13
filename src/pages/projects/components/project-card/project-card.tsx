@@ -20,7 +20,7 @@ const linkLookup = {
 };
 
 export default function ProjectCard({ project }: { project: Project }) {
-	const href = project.metadata.link ? project.metadata.link : project.metadata.links['github'];
+	const href = project.metadata.links['github'];
 
 	const [isExpanded, setExpanded] = useState(false);
 
@@ -30,7 +30,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 
 	const ProjectImage = () => {
 		return (
-			<a className='project-image' href={href}>
+			<a className='project-image' href={href} target='_blank'>
 				<img className='project-image' src={project.metadata.thumb} alt='' />
 			</a>
 		);
@@ -39,7 +39,9 @@ export default function ProjectCard({ project }: { project: Project }) {
 	const ProjectTitle = () => {
 		return (
 			<h3 className='project-name'>
-				<a href={href}>{project.metadata.name}</a>
+				<a href={href} target='_blank'>
+					{project.metadata.name}
+				</a>
 			</h3>
 		);
 	};
