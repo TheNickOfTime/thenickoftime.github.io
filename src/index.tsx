@@ -16,9 +16,9 @@ import '@fortawesome/react-fontawesome';
 import Navigation from './components/navigation/navigation';
 
 // Pages
-import Home from './pages/home/home';
-import Projects from './pages/projects/projects';
-import MissingError from './pages/error/404/404';
+import Home from './pages/home/home.mdx';
+import Projects from './pages/projects/projects.mdx';
+import Error404 from './pages/error/404.mdx';
 
 // Test pages
 import MarkdownTest from './pages/test/markdown/markdown';
@@ -38,7 +38,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 						{/* Test Pages */}
 						<Route path='markdown-test' element={<MarkdownTest />} />
 						<Route path='style-test' element={<StyleTest />} />
-						<Route path='*' element={<MissingError />} />
+						<Route path='*' element={<Error404 />} />
 					</Route>
 				</Routes>
 			</Router>
