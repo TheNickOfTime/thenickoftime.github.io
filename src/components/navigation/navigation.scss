@@ -1,13 +1,25 @@
 @import '/src/styles/colors';
 @import '/src/styles/text';
 
-nav {
+#navigation {
 	margin: 5rem 0;
 
 	font-family: $font-secondary;
 	font-size: 2.5rem;
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	align-items: center;
 
-	ul {
+	#navigation-header {
+		position: absolute;
+		left: 0;
+		* {
+			margin: 0;
+		}
+	}
+
+	#navigation-links {
 		margin: 0;
 		padding: 0;
 		display: flex;
@@ -15,20 +27,20 @@ nav {
 		align-items: center;
 		justify-content: center;
 		list-style: none;
-	}
 
-	a {
-		margin: 0;
-		padding: 0.25rem 1.75rem 0.5rem 1.75rem;
-		
-		border-radius: 5rem;
-		color: $text-primary
-	}
+		.navigation-link {
+			margin: 0;
+			padding: 0.25rem 1.75rem 0.5rem 1.75rem;
 
-	a[aria-current='page'] {
-		background-color: $text-primary;
-		color: $background-primary;
+			border-radius: 5rem;
+			color: $text-primary;
 
-		font-weight: 600;
+			&[aria-current='page'] {
+				background-color: $text-primary;
+				color: $background-primary;
+
+				font-weight: 600;
+			}
+		}
 	}
 }

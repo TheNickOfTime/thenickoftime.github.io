@@ -10,11 +10,13 @@ export default function Navigation() {
 	return (
 		<>
 			<nav id='navigation'>
-				<ul>
+				<ul id='navigation-links'>
 					{Object.entries(navEntries).map((entry) => {
 						return (
 							<li key={entry[0].toLowerCase()}>
-								<NavLink to={entry[1]}>{entry[0]}</NavLink>
+								<NavLink className='navigation-link' to={entry[1]}>
+									{entry[0]}
+								</NavLink>
 							</li>
 						);
 					})}
