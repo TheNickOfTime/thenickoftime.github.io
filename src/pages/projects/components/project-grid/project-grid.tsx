@@ -35,10 +35,10 @@ export default function ProjectGrid({
 
 	const sortFeatured = (projects: Project[]) => {
 		const sortedProjects = sortAlphabetical(projects).sort((a, b) => {
-			const aRank = a.metadata.featured ? a.metadata.featured : 0;
-			const bRank = b.metadata.featured ? b.metadata.featured : 0;
+			const aRank = a.metadata.featured ? a.metadata.featured : Infinity;
+			const bRank = b.metadata.featured ? b.metadata.featured : Infinity;
 
-			return bRank - aRank;
+			return aRank - bRank;
 		});
 
 		return sortedProjects;
