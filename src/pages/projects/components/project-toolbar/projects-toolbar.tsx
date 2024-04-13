@@ -1,6 +1,16 @@
 // Dependencies ------------------------------------------------------------------------------------
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faFilter, faSort, faTag } from '@fortawesome/free-solid-svg-icons';
+import {
+	faArrowDownAZ,
+	faArrowDownWideShort,
+	faArrowUpZA,
+	faArrowUpWideShort,
+	faFilter,
+	faFolderOpen,
+	faSort,
+	faStar,
+	faTag,
+} from '@fortawesome/free-solid-svg-icons';
 
 import ToolbarDropdown from './dropdowns/toolbar-dropdown';
 
@@ -37,6 +47,28 @@ export default function ProjectsToolbar({
 }: Params) {
 	// console.log(options);
 
+	const getSortByIcon = () => {
+		switch (sortBy) {
+			case 'Alphabetical':
+				return sortOrder == 'Descending' ? faArrowDownAZ : faArrowUpZA;
+			case 'Featured':
+				return faStar;
+			default:
+				return faStar;
+		}
+	};
+
+	const getSortOrderIcon = () => {
+		switch (sortOrder) {
+			case 'Ascending':
+				return faArrowUpWideShort;
+			case 'Descending':
+				return faArrowDownWideShort;
+			default:
+				return faArrowDownWideShort;
+		}
+	};
+
 	return (
 		<div className='projects-toolbar'>
 			<div className='toolbar-section'>
@@ -57,7 +89,7 @@ export default function ProjectsToolbar({
 				/>
 				<ToolbarDropdown
 					label='Types'
-					icon={faTag}
+					icon={faFolderOpen}
 					multiselectOptions={types}
 					setMultiselectOptions={setTypes}
 				/>
@@ -69,7 +101,7 @@ export default function ProjectsToolbar({
 				</span>
 				<ToolbarDropdown
 					label={sortBy}
-					icon={faTag}
+					icon={getSortByIcon()}
 					singleselectOptions={sortingOptions}
 					selectedOption={sortBy}
 					setSingleselectOption={setSortBy}
@@ -77,7 +109,7 @@ export default function ProjectsToolbar({
 				/>
 				<ToolbarDropdown
 					label={sortOrder}
-					icon={faTag}
+					icon={getSortOrderIcon()}
 					singleselectOptions={sortingOrder}
 					selectedOption={sortOrder}
 					setSingleselectOption={setSortOrder}
