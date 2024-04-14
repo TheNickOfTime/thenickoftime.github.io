@@ -1,0 +1,42 @@
+@import '/src/styles/colors';
+@import '/src/styles/responsive';
+@import '/src/styles/text';
+
+#footer {
+	// height: 25rem;
+
+	padding: 4rem 0;
+
+	display: flex;
+	flex-direction: column;
+
+	background-color: #0e0e0e;
+
+	#footer-main {
+		width: 100%;
+		max-width: $large-max-width;
+		margin: 0 auto;
+		padding-top: 2rem;
+		display: flex;
+
+		#footer-hero {
+			width: 15rem;
+			aspect-ratio: 1;
+			background-color: $background-primary;
+			border-radius: 2rem;
+			overflow: hidden;
+
+			img {
+				width: 100%;
+				height: 100%;
+				object-fit: cover;
+			}
+		}
+	}
+
+	#footer-copyright {
+		text-align: center;
+		font-size: 2rem;
+		font-family: $font-secondary;
+	}
+}
