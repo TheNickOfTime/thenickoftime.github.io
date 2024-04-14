@@ -24,6 +24,7 @@ import Error404 from './pages/error/404.mdx';
 import MarkdownTest from './pages/test/markdown/markdown';
 import StyleTest from './pages/test/style/style';
 import Header from './components/header/header';
+import Footer from './components/footer/footer';
 
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -45,5 +46,6 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 				</Routes>
 			</Router>
 		</main>
+		<Footer />
 	</React.StrictMode>
 );

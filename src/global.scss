@@ -1,6 +1,7 @@
 @import './styles/colors';
 @import './styles/general';
 @import './styles/icons';
+@import './styles/responsive';
 @import './styles/text';
 
 * {
@@ -27,8 +28,8 @@ body {
 }
 
 main {
-	max-width: 1200px;
-	margin: 0 auto 20rem auto;
+	max-width: $large-max-width;
+	margin: 0 auto 5rem auto;
 }
 
 h1,
