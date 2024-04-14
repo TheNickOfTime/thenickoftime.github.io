@@ -1,0 +1,41 @@
+@import '/src/styles/responsive';
+
+@function get-margin() {
+	$margin: 0;
+	@if (100vw > $large-max-width) {
+		$margin: calc((100vw - $large-max-width) / 2);
+	}
+
+	@return $margin;
+}
+
+#featured-projects {
+	max-width: 100%;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+
+	#project-scroll {
+		min-width: 100vw;
+		max-width: 100vw;
+		// padding: 2rem;
+		// display: flex;
+		// align-items: flex-start;
+		// gap: 2rem;
+		// overflow: scroll;
+
+		#project-cards {
+			$margin: min(100vw, calc((100vw - $large-max-width) / 2));
+
+			display: flex;
+			overflow: scroll;
+			align-items: flex-start;
+			gap: 2rem;
+			padding: 2rem $margin;
+
+			.project-card {
+				min-width: 400px;
+			}
+		}
+	}
+}
