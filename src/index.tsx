@@ -35,17 +35,31 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 				<Routes>
 					<Route path='/' element={<Navigation />}>
 						{/* Index Page */}
-						<Route index element={<Home />} />
+						<Route
+							index
+							element={
+								<div className='content' id='home'>
+									<Home />
+								</div>
+							}
+						/>
 						{/* Main Pages */}
-						<Route path='projects' element={<Projects />} />
+						<Route
+							path='projects'
+							element={
+								<div className='content' id='projects'>
+									<Projects />
+								</div>
+							}
+						/>
 						{/* Test Pages */}
-						<Route path='markdown-test' element={<MarkdownTest />} />
-						<Route path='style-test' element={<StyleTest />} />
-						<Route path='*' element={<Error404 />} />
+						{/* <Route path='markdown-test' element={<MarkdownTest />} />
+						<Route path='style-test' element={<StyleTest />} /> */}
+						<Route path='*' element={<Error404 id='error-404' />} />
 					</Route>
 				</Routes>
+				<Footer />
 			</Router>
 		</main>
-		<Footer />
 	</React.StrictMode>
 );
