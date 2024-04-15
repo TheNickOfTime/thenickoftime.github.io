@@ -107,7 +107,7 @@ export default function ProjectGrid({
 	};
 
 	return (
-		<div id='projects'>
+		<div id='project-grid'>
 			<Projects />
 		</div>
 	);
