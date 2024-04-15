@@ -29,7 +29,7 @@ export default function SocialLinks() {
 
 	const SocialLink = ({ id, metadata }: { id: string; metadata: LinkMetadata }) => {
 		return (
-			<a className='social-link' id={id} href={metadata.link}>
+			<a className='social-link' id={id} href={metadata.link} target='_blank'>
 				<FontAwesomeIcon id='icon' icon={metadata.icon} />
 				<span id='label'>{metadata.label}</span>
 			</a>
