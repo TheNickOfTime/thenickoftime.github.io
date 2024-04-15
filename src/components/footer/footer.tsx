@@ -8,7 +8,9 @@ export default function Footer() {
 					<img src='/hero.png' alt='Footer Hero' />
 				</div>
 			</div> */}
-			<div id='footer-copyright'>{new Date().getFullYear()} © Nick Cunningham</div>
+			<div id='footer-background'>
+				<div id='footer-copyright'>{new Date().getFullYear()} © Nick Cunningham</div>
+			</div>
 		</div>
 	);
 }

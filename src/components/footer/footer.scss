@@ -4,19 +4,33 @@
 
 #footer {
 	// height: 25rem;
+	$margin: min(100vw, calc((100vw - $large-max-width) / 2));
 
-	padding: 4rem 0;
+	position: relative;
+	margin-top: 10rem;
+	// margin: 10rem calc($margin * -1) 0 calc($margin * -1);
 
 	display: flex;
+	justify-content: center;
+	align-items: center;
 	flex-direction: column;
 
-	background-color: #0e0e0e;
+	// background-color: #0e0e0e;
+
+	#footer-background {
+		position: absolute;
+		min-width: 100vw;
+
+		padding: 2rem 0;
+
+		background-color: #0e0e0e;
+	}
 
 	#footer-main {
 		width: 100%;
-		max-width: $large-max-width;
-		margin: 0 auto;
-		padding-top: 2rem;
+		// max-width: $large-max-width;
+		// margin: 0 auto;
+		// padding-top: 2rem;
 		display: flex;
 
 		#footer-hero {
