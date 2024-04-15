@@ -1,0 +1,31 @@
+@import '/src/styles/colors';
+
+#header {
+	margin-top: 3rem;
+
+	display: flex;
+	flex-direction: column;
+	text-align: center;
+
+	#header-title {
+		margin: 0;
+
+		letter-spacing: 0.5rem;
+
+		a {
+			color: $text-primary;
+
+			&:hover {
+				text-decoration: underline;
+			}
+		}
+	}
+
+	#header-subtitle {
+		margin: 0;
+
+		letter-spacing: 1rem;
+
+		color: $text-secondary;
+	}
+}
