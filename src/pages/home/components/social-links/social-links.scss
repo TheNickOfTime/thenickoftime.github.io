@@ -1,0 +1,59 @@
+@import '/src//styles/colors';
+@import '/src/styles/text';
+
+$github-color: #8241f9;
+$linkedin-color: #0077b5;
+
+#social-links {
+	margin: 2rem;
+
+	display: flex;
+	flex-direction: row;
+	justify-content: center;
+	gap: 2rem;
+
+	.social-link {
+		padding: 0.5rem 2rem;
+
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 1rem;
+
+		font-family: $font-secondary;
+		font-size: 2.5rem;
+
+		// background-color: $text-primary;
+		// color: $background-primary;
+
+		border-radius: 5rem;
+
+		#icon {
+		}
+
+		#label {
+			margin-bottom: 0.25em;
+			color: $text-primary;
+		}
+
+		&:hover {
+			background-color: $color-primary;
+
+			#icon {
+				color: $background-primary;
+			}
+
+			#label {
+				color: $background-primary;
+			}
+		}
+	}
+
+	#github {
+		color: $github-color;
+	}
+
+	#linkedin {
+		color: $linkedin-color;
+	}
+}

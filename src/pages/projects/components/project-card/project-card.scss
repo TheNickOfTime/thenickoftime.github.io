@@ -1,0 +1,119 @@
+@import '/src/styles/colors';
+@import '/src/styles/text';
+
+.project-card {
+	// width: 40rem;
+
+	display: flex;
+	flex-direction: column;
+	overflow: hidden;
+
+	border-radius: 2rem;
+
+	background-color: $background-secondary;
+
+	.project-image {
+		width: 100%;
+		aspect-ratio: 16/9;
+	}
+
+	.project-info {
+		padding: 1.5rem;
+
+		h5 {
+			margin: 1rem 0 0.25rem 0;
+		}
+
+		.project-name {
+			margin: 0 0 1rem 0;
+
+			a {
+				color: $text-primary;
+			}
+
+			a:hover {
+				color: $highlight-primary;
+				text-decoration: underline;
+			}
+		}
+
+		.project-description {
+			margin: 0;
+		}
+
+		.project-tags {
+			display: flex;
+			flex-wrap: wrap;
+			gap: 0.5rem;
+
+			.project-tag {
+				padding: 0.25rem 0.75rem;
+
+				display: flex;
+				align-items: center;
+				gap: 0.5rem;
+
+				border-radius: 0.5rem;
+
+				font-family: $font-secondary;
+				font-size: 1.5rem;
+
+				background-color: $color-secondary;
+
+				.tag-icon {
+					height: 1.25rem;
+				}
+
+				.tag-label {
+					margin-bottom: 0.25rem;
+				}
+			}
+		}
+
+		.project-quicklinks {
+			// padding: 1.5rem;
+			display: flex;
+			flex-direction: row;
+			flex-wrap: wrap;
+			gap: 1rem;
+
+			.quicklink-button {
+				display: flex;
+				gap: 1rem;
+				align-items: center;
+
+				box-shadow: 0 0 5px $background-primary;
+
+				color: $background-secondary;
+			}
+
+			.quicklink-icon {
+				font-size: 2rem;
+			}
+
+			.quicklink-label {
+				margin-bottom: 0.25rem;
+			}
+		}
+	}
+
+	.project-quicklink-dropdown {
+		padding-top: 0.25rem;
+		display: flex;
+		flex-direction: column;
+		justify-content: center;
+		align-items: center;
+
+		.quicklink-label {
+			font-size: 1rem;
+		}
+
+		.quicklink-dropdown {
+			margin: -0.5rem;
+		}
+
+		&:hover {
+			background-color: $background-tertiary;
+		}
+	}
+}

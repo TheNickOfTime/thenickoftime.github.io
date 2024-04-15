@@ -8,6 +8,15 @@
 			"version": "lts"
 		}
 	},
-	"appPort": ["9999:9999"],
-	"runArgs": ["--name", "dev-portfolio"]
+	"runArgs": ["--name", "dev-portfolio"],
+	"customizations": {
+		"vscode": {
+			"extensions": [
+				"dbaeumer.vscode-eslint",
+				"christian-kohler.npm-intellisense",
+				"esbenp.prettier-vscode",
+				"unifiedjs.vscode-mdx"
+			]
+		}
+	}
 }

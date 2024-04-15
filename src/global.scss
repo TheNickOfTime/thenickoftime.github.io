@@ -1,0 +1,82 @@
+@import './styles/colors';
+@import './styles/general';
+@import './styles/icons';
+@import './styles/responsive';
+@import './styles/text';
+
+* {
+	box-sizing: border-box;
+}
+
+:root {
+	font-size: 10px;
+}
+
+body {
+	// sizing
+	width: 100vw;
+	margin: 0;
+	padding: 0;
+
+	//color
+	background-color: $background-primary;
+	color: white;
+
+	//text
+	font-family: $font-primary;
+	font-size: 1.5rem;
+}
+
+main {
+	max-width: $large-max-width;
+	margin: 0 auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5 {
+	font-family: $font-secondary;
+}
+
+h1 {
+	font-size: 4rem;
+}
+
+h2 {
+	font-size: 3.25rem;
+}
+
+h3 {
+	font-size: 2.75rem;
+}
+
+h4 {
+	font-size: 2.5rem;
+}
+
+h5 {
+	font-size: 2.25rem;
+}
+
+a {
+	text-decoration: none;
+	color: $color-primary;
+}
+
+button,
+.button {
+	padding: 0.5rem 1rem;
+	border: none;
+	border-radius: 5rem;
+	font-family: $font-secondary;
+	font-size: 1.5rem;
+	font-weight: 500;
+	background-color: $color-primary;
+	color: $background-primary;
+
+	&:hover {
+		background-color: $highlight-primary;
+	}
+}
