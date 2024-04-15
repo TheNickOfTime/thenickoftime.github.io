@@ -13,6 +13,7 @@ import '@fontsource/material-icons';
 import '@fortawesome/react-fontawesome';
 
 //Components
+import Banner from './components/banner/banner';
 import Navigation from './components/navigation/navigation';
 
 // Pages
@@ -29,6 +30,7 @@ import Footer from './components/footer/footer';
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
+		<Banner text='Warning: This page is under active development. Currently mobile is unsupported.' />
 		<main>
 			<Router>
 				<Header />
