@@ -1,8 +1,9 @@
-import { Project, Projects, ProjectMetadata } from 'src/types/project';
+import { Project, Projects } from 'src/types/project';
 
 import ProjectCard from 'src/pages/projects/components/project-card/project-card';
 
 import './featured-projects.scss';
+import { NavLink } from 'react-router-dom';
 
 const ProjectCards = () => {
 	const projects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
@@ -27,7 +28,15 @@ const ProjectCards = () => {
 export default function FeaturedProjects() {
 	return (
 		<div id='featured-projects'>
-			<ProjectCards />
+			<div id='projects-title'>
+				<h1>Featured Projects</h1>
+				<NavLink id='all-projects' className='button' to='/projects'>
+					See All Projects
+				</NavLink>
+			</div>
+			<div id='projects-container'>
+				<ProjectCards />
+			</div>
 		</div>
 	);
 }
