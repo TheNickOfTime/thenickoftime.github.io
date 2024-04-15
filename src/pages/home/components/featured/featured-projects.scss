@@ -10,7 +10,31 @@
 	@return $margin;
 }
 
-#featured-projects {
+#projects-title {
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	gap: 2rem;
+	// justify-content: space-between;
+	h1 {
+		// width: 50%;
+		padding-bottom: 0.25em;
+		// flex-grow: 1;
+	}
+
+	#all-projects {
+		border: 0.25rem solid $color-primary;
+		background-color: transparent;
+		color: $color-primary;
+
+		&:hover {
+			background-color: $color-primary;
+			color: $background-primary;
+		}
+	}
+}
+
+#projects-container {
 	max-width: 100%;
 	// display: flex;
 	// justify-content: center;
@@ -36,6 +60,7 @@
 			align-items: flex-start;
 			gap: 2rem;
 			padding: 2rem;
+			padding-bottom: 4rem;
 
 			.project-card {
 				min-width: 400px;
