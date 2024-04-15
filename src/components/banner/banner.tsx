@@ -4,7 +4,7 @@ import { faXmark } from '@fortawesome/free-solid-svg-icons';
 
 import './banner.scss';
 
-export default function Banner({ text }: { text: string }) {
+export default function Banner({ children }) {
 	const [isOpen, setIsOpen] = useState(true);
 
 	if (isOpen) {
@@ -12,7 +12,7 @@ export default function Banner({ text }: { text: string }) {
 			<div id='banner'>
 				<div id='banner-background' />
 				<div id='banner-main'>
-					<p id='banner-text'>{text}</p>
+					<p id='banner-text'>{children}</p>
 					<FontAwesomeIcon
 						id='banner-button'
 						icon={faXmark}

@@ -30,7 +30,16 @@ import Footer from './components/footer/footer';
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<Banner text='Warning: This page is under active development. Currently mobile is unsupported.' />
+		<Banner>
+			Warning: This page is under active development. See development{' '}
+			<a
+				href='https://github.com/TheNickOfTime/thenickoftime.github.io/tree/dev'
+				target='_blank'
+			>
+				here
+			</a>
+			. Currently mobile is unsupported.
+		</Banner>
 		<main>
 			<Router>
 				<Header />
