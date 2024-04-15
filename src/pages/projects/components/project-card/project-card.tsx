@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDocker, faGithub } from '@fortawesome/free-brands-svg-icons';
 import {
@@ -13,7 +14,16 @@ import { Project } from 'src/types/project';
 import './project-card.scss';
 // import { metadata } from 'src/projects/portfolio/25+5-clock.mdx';
 
-const linkLookup = {
+interface LinkMetadata {
+	icon: IconDefinition;
+	label: string;
+}
+
+interface LinkData {
+	[index: string]: LinkMetadata;
+}
+
+const linkLookup: LinkData = {
 	live: { icon: faUpRightFromSquare, label: 'View Live' },
 	github: { icon: faGithub, label: 'View Source Code' },
 	codespace: { icon: faDocker, label: 'Open in Github Codespace' },
@@ -95,8 +105,8 @@ export default function ProjectCard({ project }: { project: Project }) {
 		return (
 			<div className='project-quicklinks'>
 				{Object.entries(project.metadata.links).map((entry) => {
-					const link: string = entry[1];
-					const linkData: object = linkLookup[entry[0]];
+					const link = entry[1];
+					const linkData = linkLookup[entry[0]];
 					// console.log(linkData);
 					return (
 						<a className='button quicklink-button' href={link} target='_blank'>

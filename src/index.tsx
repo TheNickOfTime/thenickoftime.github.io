@@ -22,8 +22,8 @@ import Projects from './pages/projects/projects.mdx';
 import Error404 from './pages/error/404.mdx';
 
 // Test pages
-import MarkdownTest from './pages/test/markdown/markdown';
-import StyleTest from './pages/test/style/style';
+// import MarkdownTest from './pages/test/markdown/markdown';
+// import StyleTest from './pages/test/style/style';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
 
@@ -64,8 +64,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 							}
 						/>
 						{/* Test Pages */}
-						{/* <Route path='markdown-test' element={<MarkdownTest />} />
-						<Route path='style-test' element={<StyleTest />} /> */}
+						{/* <Route path='style-test' element={<StyleTest />} */}
 						<Route path='*' element={<Error404 id='error-404' />} />
 					</Route>
 				</Routes>

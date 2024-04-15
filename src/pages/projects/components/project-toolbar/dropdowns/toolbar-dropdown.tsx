@@ -51,14 +51,14 @@ export default function ToolbarDropdown({
 			{renderList &&
 				(multiselect ? (
 					<ToolbarDropdownMultiselect
-						options={multiselectOptions}
-						setOptions={setMultiselectOptions}
+						options={multiselectOptions!}
+						setOptions={setMultiselectOptions!}
 					/>
 				) : (
 					<ToolbarDropdownSingleselect
-						options={singleselectOptions}
-						selectedOption={selectedOption}
-						setSelectedOption={setSingleselectOption}
+						options={singleselectOptions!}
+						selectedOption={selectedOption!}
+						setSelectedOption={setSingleselectOption!}
 					/>
 				))}
 		</div>
