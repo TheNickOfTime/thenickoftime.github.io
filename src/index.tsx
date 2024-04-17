@@ -26,6 +26,7 @@ import Error404 from './pages/error/404.mdx';
 // import StyleTest from './pages/test/style/style';
 import Header from './components/header/header';
 import Footer from './components/footer/footer';
+import Resume from './pages/resume/resume';
 
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -63,6 +64,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 								</div>
 							}
 						/>
+						<Route path='resume' element={<Resume />} />
 						{/* Test Pages */}
 						{/* <Route path='style-test' element={<StyleTest />} */}
 						<Route path='*' element={<Error404 id='error-404' />} />
