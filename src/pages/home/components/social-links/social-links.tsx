@@ -1,5 +1,10 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { IconDefinition, faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
+import {
+	IconDefinition,
+	faFreeCodeCamp,
+	faGithub,
+	faLinkedin,
+} from '@fortawesome/free-brands-svg-icons';
 
 import './social-links.scss';
 
@@ -24,6 +29,11 @@ export default function SocialLinks() {
 			label: 'LinkedIn',
 			link: 'https://www.linkedin.com/in/nickecunningham/',
 			icon: faLinkedin,
+		},
+		freecodecamp: {
+			label: 'freeCodeCamp',
+			link: 'https://www.freecodecamp.org/thenickoftime',
+			icon: faFreeCodeCamp,
 		},
 	};
 
