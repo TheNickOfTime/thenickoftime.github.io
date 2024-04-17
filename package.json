@@ -28,7 +28,8 @@
 		"remark-frontmatter": "^5.0.0",
 		"remark-mdx-frontmatter": "^4.0.0",
 		"sass": "^1.74.1",
-		"vfile-matter": "^5.0.0"
+		"vfile-matter": "^5.0.0",
+		"yaml": "^2.4.1"
 	},
 	"devDependencies": {
 		"@types/mdx": "^2.0.12",
