@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faUser, faFilePdf } from '@fortawesome/free-solid-svg-icons';
 
 import Header from 'src/components/header/header';
 
@@ -168,8 +168,10 @@ export default function Resume() {
 	return (
 		<div id='resume'>
 			<div id='resume-download'>
-				<a className='button' href=''>
-					Download .pdf
+				<a className='button' href='/documents/nick-cunningham-resume.pdf' download>
+					{/* <FontAwesomeIcon icon={faDownload} /> */}
+					<FontAwesomeIcon icon={faFilePdf} />
+					<span>Download</span>
 				</a>
 			</div>
 			<ResumeContainer />
