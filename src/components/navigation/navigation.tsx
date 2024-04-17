@@ -5,6 +5,7 @@ export default function Navigation() {
 	const navEntries = {
 		Home: '/',
 		Projects: '/projects',
+		Resume: '/resume',
 	};
 
 	return (
