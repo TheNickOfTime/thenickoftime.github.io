@@ -1,6 +1,8 @@
 import ProjectCard from '../project-card/project-card';
 import { Project, Projects, MultiselectOptions } from 'src/types/project';
 
+import './project-grid.scss';
+
 interface Params {
 	projects: Projects;
 	show: string;

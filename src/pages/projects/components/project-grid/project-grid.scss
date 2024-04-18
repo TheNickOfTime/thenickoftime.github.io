@@ -1,0 +1,19 @@
+@media screen and (max-width: 767px) {
+	#project-grid {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+		// justify-content: space-between;
+		// align-items: flex-start;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	#project-grid {
+		display: grid;
+		grid-template-columns: repeat(3, 1fr);
+		gap: 2rem;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+}
