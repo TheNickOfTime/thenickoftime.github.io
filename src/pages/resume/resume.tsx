@@ -29,11 +29,9 @@ export default function Resume() {
 						<Page pageNumber={1} scale={1.5} />
 					</Document>
 				</div>
-				<embed
-					id='pdf-embed'
-					src='/documents/nick-cunningham-resume.pdf'
-					type='application/pdf'
-				/>
+				<a href='/documents/nick-cunningham-resume.pdf' download>
+					<img id='resume-img' src='/documents/nick-cunningham-resume.jpg' alt='Resume' />
+				</a>
 			</div>
 		</div>
 	);
