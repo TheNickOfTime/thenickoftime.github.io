@@ -1,5 +1,35 @@
 @import '/src/styles/colors';
 
+@media screen and (max-width: 767px) {
+	.dropdown-list {
+		position: absolute;
+		left: 2rem;
+		// right: 2rem;
+
+		// width: 80%;
+		margin-top: 1rem;
+
+		padding: 2rem;
+
+		background-color: $background-secondary;
+		border-radius: 1rem;
+		box-shadow: 0 0 10px $background-shadow;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	.dropdown-list {
+		position: absolute;
+		margin-top: 1rem;
+
+		padding: 2rem;
+
+		background-color: $background-secondary;
+		border-radius: 1rem;
+		box-shadow: 0 0 10px $background-shadow;
+	}
+}
+
 .toolbar-dropdown {
 	.dropdown-button {
 		display: flex;
@@ -10,19 +40,5 @@
 		.dropdown-label {
 			margin-bottom: 0.25rem;
 		}
-	}
-
-	.dropdown-list {
-		// display: block;
-		// z-index: 10;
-		position: absolute;
-		margin-top: 1rem;
-		// top: 10px;
-
-		padding: 2rem;
-
-		background-color: $background-secondary;
-		border-radius: 1rem;
-		box-shadow: 0 0 10px $background-shadow;
 	}
 }
