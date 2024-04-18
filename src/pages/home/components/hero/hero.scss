@@ -1,6 +1,18 @@
 @import '/src/styles/colors';
 @import '/src/styles/text';
 
+@media screen and (max-width: 900px) {
+	#hero-foreground {
+		#primary {
+			font-size: 2em !important;
+		}
+
+		#secondary {
+			font-size: 1em !important;
+		}
+	}
+}
+
 #hero {
 	position: relative;
 	// left: 0;
@@ -34,7 +46,7 @@
 		height: 100%;
 
 		// margin-top: 5rem;
-		margin-left: 25rem;
+		// margin-left: 25rem;
 
 		display: flex;
 		// flex
@@ -50,14 +62,15 @@
 				color: $background-secondary;
 				font-family: $font-secondary;
 				font-weight: 500;
-				font-size: 10rem;
+				font-size: 6em;
 				font-style: italic;
+				text-align: center;
 				// text-shadow: 0 0 3rem $background-primary;
 			}
 
 			#secondary {
 				color: $background-tertiary;
-				font-size: 2.5rem;
+				font-size: 2em;
 				font-weight: 600;
 				text-align: right;
 				font-style: italic;

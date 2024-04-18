@@ -97,48 +97,52 @@ export default function ProjectsToolbar({
 				<span>
 					<FontAwesomeIcon icon={faFilter} /> Filters:
 				</span>
-				<ToolbarDropdown
-					label={show}
-					icon={getShowIcon()}
-					singleselectOptions={showOptions}
-					selectedOption={show}
-					setSingleselectOption={setShow}
-					multiselect={false}
-				/>
-				<ToolbarDropdown
-					label='Tags'
-					icon={faTag}
-					multiselectOptions={tags}
-					setMultiselectOptions={setTags}
-				/>
-				<ToolbarDropdown
-					label='Types'
-					icon={faFolderOpen}
-					multiselectOptions={types}
-					setMultiselectOptions={setTypes}
-				/>
+				<div className='dropdowns'>
+					<ToolbarDropdown
+						label={show}
+						icon={getShowIcon()}
+						singleselectOptions={showOptions}
+						selectedOption={show}
+						setSingleselectOption={setShow}
+						multiselect={false}
+					/>
+					<ToolbarDropdown
+						label='Tags'
+						icon={faTag}
+						multiselectOptions={tags}
+						setMultiselectOptions={setTags}
+					/>
+					<ToolbarDropdown
+						label='Types'
+						icon={faFolderOpen}
+						multiselectOptions={types}
+						setMultiselectOptions={setTypes}
+					/>
+				</div>
 			</div>
 			<div className='toolbar-separator' />
 			<div className='toolbar-section toolbar-sorting'>
 				<span>
 					<FontAwesomeIcon icon={faSort} /> Sorting:
 				</span>
-				<ToolbarDropdown
-					label={sortBy}
-					icon={getSortByIcon()}
-					singleselectOptions={sortingOptions}
-					selectedOption={sortBy}
-					setSingleselectOption={setSortBy}
-					multiselect={false}
-				/>
-				<ToolbarDropdown
-					label={sortOrder}
-					icon={getSortOrderIcon()}
-					singleselectOptions={sortingOrder}
-					selectedOption={sortOrder}
-					setSingleselectOption={setSortOrder}
-					multiselect={false}
-				/>
+				<div className='dropdowns'>
+					<ToolbarDropdown
+						label={sortBy}
+						icon={getSortByIcon()}
+						singleselectOptions={sortingOptions}
+						selectedOption={sortBy}
+						setSingleselectOption={setSortBy}
+						multiselect={false}
+					/>
+					<ToolbarDropdown
+						label={sortOrder}
+						icon={getSortOrderIcon()}
+						singleselectOptions={sortingOrder}
+						selectedOption={sortOrder}
+						setSingleselectOption={setSortOrder}
+						multiselect={false}
+					/>
+				</div>
 			</div>
 		</div>
 	);
