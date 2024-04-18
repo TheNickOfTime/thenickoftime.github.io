@@ -10,7 +10,8 @@
 		display: none;
 	}
 
-	#pdf-embed {
+	#pdf-embed,
+	#resume-img {
 		width: 100%;
 		aspect-ratio: 8.5/11;
 	}
@@ -23,7 +24,8 @@
 		}
 	}
 
-	#pdf-embed {
+	#pdf-embed,
+	#resume-img {
 		display: none;
 	}
 }
@@ -54,7 +56,8 @@
 		}
 	}
 
-	#pdf-container {
+	#pdf-container,
+	#resume-img {
 		box-shadow: 0 0 1rem black;
 	}
 }
