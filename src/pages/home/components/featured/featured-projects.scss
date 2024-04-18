@@ -1,27 +1,57 @@
 @import '/src/styles/colors';
 @import '/src/styles/responsive';
 
-@function get-margin() {
-	$margin: 0;
-	@if (100vw > $large-max-width) {
-		$margin: calc((100vw - $large-max-width) / 2);
+@media screen and (max-width: 767px) {
+	#projects-title {
+		margin-bottom: 1rem;
+		display: flex;
+		flex-direction: column;
+		align-items: flex-start;
 	}
 
-	@return $margin;
+	#project-cards {
+		display: flex;
+		flex-direction: column;
+		gap: 2rem;
+	}
+}
+
+@media screen and (min-width: 768px) {
+	#projects-title {
+		display: flex;
+		flex-direction: row;
+		align-items: center;
+		gap: 2rem;
+
+		h1 {
+			margin-bottom: 0.25em;
+		}
+	}
+
+	#projects-container {
+		max-width: 100%;
+		background-color: $background-secondary;
+		border-radius: 2rem;
+		box-shadow: 0 0 0.5rem $background-primary inset;
+
+		#project-scroll {
+			#project-cards {
+				display: flex;
+				overflow: scroll;
+				align-items: flex-start;
+				gap: 2rem;
+				padding: 2rem;
+				padding-bottom: 4rem;
+
+				.project-card {
+					min-width: 400px;
+				}
+			}
+		}
+	}
 }
 
 #projects-title {
-	display: flex;
-	flex-direction: row;
-	align-items: center;
-	gap: 2rem;
-	// justify-content: space-between;
-	h1 {
-		// width: 50%;
-		padding-bottom: 0.25em;
-		// flex-grow: 1;
-	}
-
 	#all-projects {
 		border: 0.25rem solid $color-primary;
 		background-color: transparent;
@@ -30,41 +60,6 @@
 		&:hover {
 			background-color: $color-primary;
 			color: $background-primary;
-		}
-	}
-}
-
-#projects-container {
-	max-width: 100%;
-	// display: flex;
-	// justify-content: center;
-	// align-items: center;
-	background-color: $background-secondary;
-	border-radius: 2rem;
-	box-shadow: 0 0 0.5rem $background-primary inset;
-
-	#project-scroll {
-		// min-width: 100vw;
-		// max-width: 100vw;
-		// padding: 2rem;
-		// display: flex;
-		// align-items: flex-start;
-		// gap: 2rem;
-		// overflow: scroll;
-
-		#project-cards {
-			// $margin: min(100vw, calc((100vw - $large-max-width) / 2));
-
-			display: flex;
-			overflow: scroll;
-			align-items: flex-start;
-			gap: 2rem;
-			padding: 2rem;
-			padding-bottom: 4rem;
-
-			.project-card {
-				min-width: 400px;
-			}
 		}
 	}
 }

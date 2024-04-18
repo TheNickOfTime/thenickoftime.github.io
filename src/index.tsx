@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 			>
 				here
 			</a>
-			. Currently mobile is unsupported.
+			.
 		</Banner>
 		<main>
 			<Router>
