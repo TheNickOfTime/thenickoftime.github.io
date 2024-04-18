@@ -1,13 +1,5 @@
 @import '/src/styles/colors';
 
-#project-grid {
-	display: grid;
-	grid-template-columns: repeat(3, 1fr);
-	gap: 2rem;
-	justify-content: space-between;
-	align-items: flex-start;
-}
-
 strong,
 em {
 	color: $highlight-primary;
