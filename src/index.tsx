@@ -31,17 +31,17 @@ import Resume from './pages/resume/resume';
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
-		<Banner>
-			This page is under active development. See development{' '}
-			<a
-				href='https://github.com/TheNickOfTime/thenickoftime.github.io/tree/dev'
-				target='_blank'
-			>
-				here
-			</a>
-			.
-		</Banner>
 		<main>
+			<Banner>
+				This page is under active development. See development{' '}
+				<a
+					href='https://github.com/TheNickOfTime/thenickoftime.github.io/tree/dev'
+					target='_blank'
+				>
+					here
+				</a>
+				.
+			</Banner>
 			<Router>
 				<Header />
 				<Navigation />
