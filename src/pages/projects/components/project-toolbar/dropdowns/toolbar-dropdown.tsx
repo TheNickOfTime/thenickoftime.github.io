@@ -43,7 +43,7 @@ export default function ToolbarDropdown({
 			<button
 				className='dropdown-button'
 				onClick={toggleDropdown}
-				onBlur={() => setRenderList(false)}
+				// onBlur={() => setRenderList(false)}
 			>
 				<FontAwesomeIcon className='dropdown-icon' icon={icon} />
 				<span className='dropdown-label'>{label}</span>
