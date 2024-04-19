@@ -1,5 +1,5 @@
 // Dependencies ------------------------------------------------------------------------------------
-import { useContext } from 'react';
+import React, { useContext, useState } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faArrowDownAZ,
@@ -24,8 +24,10 @@ import {
 	SortOrderOptions,
 } from '../project-browser/project-browser-options';
 
-import ToolbarDropdown from './dropdowns/toolbar-dropdown';
+import ToolbarDropdown from '../project-toolbar-dropdowns/toolbar-dropdown';
 import './projects-toolbar.scss';
+import { ToolbarContext, ToolbarContextType } from './projects-toolbar-context';
+
 // Types -------------------------------------------------------------------------------------------
 interface Params {
 	setShow: React.Dispatch<React.SetStateAction<string>>;
@@ -37,18 +39,19 @@ interface Params {
 
 // Component ---------------------------------------------------------------------------------------
 export default function ProjectsToolbar({
-	// showOptions,
 	setShow,
 	setTags,
 	setTypes,
-	// sortingOptions,
 	setSortBy,
-	// sortingOrder,
 	setSortOrder,
 }: Params) {
-	// console.log(options);
-
 	const context: ProjectBrowserContextType = useContext(ProjectBrowserContext)!;
+
+	const [focusedDropdown, setFocusedDropdown] = useState<string | null>(null);
+	const toolbarContext: ToolbarContextType = {
+		focusedDropdown: focusedDropdown,
+		setFocusedDropdown: setFocusedDropdown,
+	};
 
 	const getShowIcon = () => {
 		switch (context.show) {
@@ -90,61 +93,63 @@ export default function ProjectsToolbar({
 
 	return (
 		<div className='projects-toolbar'>
-			<div className='toolbar-section toolbar-filters'>
-				<span>
-					<FontAwesomeIcon icon={faFilter} /> Filters:
-				</span>
-				<div className='dropdowns'>
-					<ToolbarDropdown
-						label={context.show}
-						icon={getShowIcon()}
-						singleselectOptions={showOptions}
-						selectedOption={context.show}
-						setSingleselectOption={setShow}
-						multiselect={false}
-					/>
-					<ToolbarDropdown
-						label='Tags'
-						icon={faTag}
-						multiselectOptions={context.tags}
-						setMultiselectOptions={setTags}
-					/>
-					<ToolbarDropdown
-						label='Types'
-						icon={faFolderOpen}
-						multiselectOptions={context.types}
-						setMultiselectOptions={setTypes}
-					/>
+			<ToolbarContext.Provider value={toolbarContext}>
+				<div className='toolbar-section toolbar-filters'>
+					<span>
+						<FontAwesomeIcon icon={faFilter} /> Filters:
+					</span>
+					<div className='dropdowns'>
+						<ToolbarDropdown
+							label={context.show}
+							icon={getShowIcon()}
+							singleselectOptions={showOptions}
+							selectedOption={context.show}
+							setSingleselectOption={setShow}
+							multiselect={false}
+						/>
+						<ToolbarDropdown
+							label='Tags'
+							icon={faTag}
+							multiselectOptions={context.tags}
+							setMultiselectOptions={setTags}
+						/>
+						<ToolbarDropdown
+							label='Types'
+							icon={faFolderOpen}
+							multiselectOptions={context.types}
+							setMultiselectOptions={setTypes}
+						/>
+					</div>
 				</div>
-			</div>
-			<div className='toolbar-separator' />
-			<div className='toolbar-section toolbar-sorting'>
-				<span>
-					<FontAwesomeIcon icon={faSort} /> Sorting:
-				</span>
-				<div className='dropdowns'>
-					<ToolbarDropdown
-						label={context.sortBy}
-						icon={getSortByIcon()}
-						singleselectOptions={sortByOptions}
-						selectedOption={context.sortBy}
-						setSingleselectOption={setSortBy}
-						multiselect={false}
-					/>
-					<ToolbarDropdown
-						label={context.sortOrder}
-						icon={getSortOrderIcon()}
-						singleselectOptions={sortOrderOptions}
-						selectedOption={context.sortOrder}
-						setSingleselectOption={setSortOrder}
-						multiselect={false}
-					/>
+				<div className='toolbar-separator' />
+				<div className='toolbar-section toolbar-sorting'>
+					<span>
+						<FontAwesomeIcon icon={faSort} /> Sorting:
+					</span>
+					<div className='dropdowns'>
+						<ToolbarDropdown
+							label={context.sortBy}
+							icon={getSortByIcon()}
+							singleselectOptions={sortByOptions}
+							selectedOption={context.sortBy}
+							setSingleselectOption={setSortBy}
+							multiselect={false}
+						/>
+						<ToolbarDropdown
+							label={context.sortOrder}
+							icon={getSortOrderIcon()}
+							singleselectOptions={sortOrderOptions}
+							selectedOption={context.sortOrder}
+							setSingleselectOption={setSortOrder}
+							multiselect={false}
+						/>
+					</div>
 				</div>
-			</div>
-			<div className='toolbar-separator' />
-			<div className='toolbar-section'>
-				<span>{projectCount} Projects</span>
-			</div>
+				<div className='toolbar-separator' />
+				<div className='toolbar-section'>
+					<span>{projectCount} Projects</span>
+				</div>
+			</ToolbarContext.Provider>
 		</div>
 	);
 }
