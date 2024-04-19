@@ -91,7 +91,7 @@ export default function ProjectCard({ project }: { project: Project }) {
 			<div className='project-tags'>
 				{tagsSorted.map((tag: string) => {
 					return (
-						<span className='project-tag'>
+						<span className='project-tag' key={tag}>
 							<FontAwesomeIcon className='tag-icon' icon={faTag} />
 							<span className='tag-label'>{tag}</span>
 						</span>
