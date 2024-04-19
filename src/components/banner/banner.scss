@@ -1,40 +1,32 @@
 @import '/src/styles/colors';
 
 #banner {
-	// position: relative;
-	width: 100%;
+	width: 100vw;
+	padding: 0 2rem;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	gap: 1rem;
+	background-color: $highlight-primary;
+	color: $background-primary;
 
-	// #banner-background {
-	// 	background-color: white;
-	// }
+	#banner-text {
+		margin: 0.5rem;
+		font-size: 1.25rem;
+		text-align: center;
+		// flex-shrink: 1;
 
-	#banner-main {
-		padding: 0 2rem;
-		display: flex;
-		align-items: center;
-		justify-content: center;
-		gap: 1rem;
-		background-color: $highlight-primary;
-		color: $background-primary;
-
-		#banner-text {
-			margin: 0.5rem;
-			font-size: 1.25rem;
-			text-align: center;
-			// flex-shrink: 1;
-
-			a {
-				text-decoration: underline;
-				color: $background-primary;
-			}
+		a {
+			text-decoration: underline;
+			color: $background-primary;
 		}
+	}
 
-		#banner-button {
-			margin: 0;
-			padding: 0.25rem 0.5rem;
-			border-radius: 1rem;
-			background-color: $background-primary;
-			color: $highlight-primary;
-		}
+	#banner-button {
+		margin: 0;
+		padding: 0.25rem 0.5rem;
+		border-radius: 1rem;
+		background-color: $background-primary;
+		color: $highlight-primary;
 	}
 }
