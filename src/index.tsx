@@ -44,31 +44,34 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 		<main>
 			<Router>
 				<Header />
+				<Navigation />
 				<Routes>
-					<Route path='/' element={<Navigation />}>
-						{/* Index Page */}
-						<Route
-							index
-							element={
-								<div className='content' id='home'>
-									<Home />
-								</div>
-							}
-						/>
-						{/* Main Pages */}
-						<Route
-							path='projects'
-							element={
-								<div className='content' id='projects'>
-									<Projects />
-								</div>
-							}
-						/>
-						<Route path='resume' element={<Resume />} />
-						{/* Test Pages */}
-						{/* <Route path='style-test' element={<StyleTest />} */}
-						<Route path='*' element={<Error404 id='error-404' />} />
-					</Route>
+					<Route
+						index
+						element={
+							<div className='content' id='home'>
+								<Home />
+							</div>
+						}
+					/>
+					{/* Main Pages */}
+					<Route
+						path='/projects'
+						element={
+							<div className='content' id='projects'>
+								<Projects />
+							</div>
+						}
+					/>
+					<Route
+						path='/resume'
+						element={
+							<div className='content' id='resume'>
+								<Resume />
+							</div>
+						}
+					/>
+					<Route path='/*' element={<Error404 id='error-404' />} />
 				</Routes>
 				<Footer />
 			</Router>
