@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useContext } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
@@ -6,6 +6,7 @@ import { IconDefinition, faCaretDown, faCaretUp } from '@fortawesome/free-solid-
 import ToolbarDropdownSingleselect from './toolbar-dropdown-singleselect';
 import ToolbarDropdownMultiselect from './toolbar-dropdown-multiselect';
 import './toolbar-dropdown.scss';
+import { ToolbarContext } from '../project-toolbar/projects-toolbar-context';
 
 // Types -------------------------------------------------------------------------------------------
 interface Params {
@@ -30,29 +31,24 @@ export default function ToolbarDropdown({
 	selectedOption,
 	setSingleselectOption,
 }: Params) {
-	// const context = useContext(ProjectBrowserContext);
+	const context = useContext(ToolbarContext)!;
 
-	const [renderList, setRenderList] = useState(false);
-
+	const renderList = () => context.focusedDropdown == label;
 	const toggleDropdown = () => {
-		setRenderList(!renderList);
+		context.setFocusedDropdown(renderList() ? null : label);
 	};
 
 	return (
 		<div className='toolbar-dropdown'>
-			<button
-				className='dropdown-button'
-				onClick={toggleDropdown}
-				// onBlur={() => setRenderList(false)}
-			>
+			<button className='dropdown-button' onClick={toggleDropdown}>
 				<FontAwesomeIcon className='dropdown-icon' icon={icon} />
 				<span className='dropdown-label'>{label}</span>
 				<FontAwesomeIcon
 					className='dropdown-arrow'
-					icon={renderList ? faCaretUp : faCaretDown}
+					icon={renderList() ? faCaretUp : faCaretDown}
 				/>
 			</button>
-			{renderList &&
+			{renderList() &&
 				(multiselect ? (
 					<ToolbarDropdownMultiselect
 						options={multiselectOptions!}
