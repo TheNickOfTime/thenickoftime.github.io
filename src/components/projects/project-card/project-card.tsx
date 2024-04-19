@@ -1,4 +1,6 @@
 import { useState } from 'react';
+import { Project } from 'src/types/project';
+
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faDocker, faGithub } from '@fortawesome/free-brands-svg-icons';
@@ -9,10 +11,7 @@ import {
 	faUpRightFromSquare,
 } from '@fortawesome/free-solid-svg-icons';
 
-import { Project } from 'src/types/project';
-
 import './project-card.scss';
-// import { metadata } from 'src/projects/portfolio/25+5-clock.mdx';
 
 interface LinkMetadata {
 	icon: IconDefinition;

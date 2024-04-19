@@ -13,8 +13,8 @@ import '@fontsource/material-icons';
 import '@fortawesome/react-fontawesome';
 
 //Components
-import Banner from './components/banner/banner';
-import Navigation from './components/navigation/navigation';
+import Banner from './components/index/banner/banner';
+import Navigation from './components/index/navigation/navigation';
 
 // Pages
 import Home from './pages/home/home.mdx';
@@ -24,8 +24,8 @@ import Error404 from './pages/error/404.mdx';
 // Test pages
 // import MarkdownTest from './pages/test/markdown/markdown';
 // import StyleTest from './pages/test/style/style';
-import Header from './components/header/header';
-import Footer from './components/footer/footer';
+import Header from './components/index/header/header';
+import Footer from './components/index/footer/footer';
 import Resume from './pages/resume/resume';
 
 // App ---------------------------------------------------------------------------------------------
