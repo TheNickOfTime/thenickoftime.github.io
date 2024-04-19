@@ -3,7 +3,7 @@ import { IconDefinition } from '@fortawesome/fontawesome-svg-core';
 import { faGithub, faLinkedin } from '@fortawesome/free-brands-svg-icons';
 import { faEnvelope, faUser } from '@fortawesome/free-solid-svg-icons';
 
-import Header from 'src/components/header/header';
+import Header from 'src/components/index/header/header';
 
 import YAML from 'yaml';
 import './resume.scss';
