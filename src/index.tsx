@@ -32,7 +32,7 @@ import Resume from './pages/resume/resume';
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<Banner>
-			Warning: This page is under active development. See development{' '}
+			This page is under active development. See development{' '}
 			<a
 				href='https://github.com/TheNickOfTime/thenickoftime.github.io/tree/dev'
 				target='_blank'
