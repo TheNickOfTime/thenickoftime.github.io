@@ -1,4 +1,5 @@
 // Dependencies ------------------------------------------------------------------------------------
+import { useContext } from 'react';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faArrowDownAZ,
@@ -13,49 +14,44 @@ import {
 	faTag,
 } from '@fortawesome/free-solid-svg-icons';
 
+import {
+	ProjectBrowserContext,
+	ProjectBrowserContextType,
+} from '../project-browser/project-browser-context';
+import {
+	ShowOptions,
+	SortByOptions,
+	SortOrderOptions,
+} from '../project-browser/project-browser-options';
+
 import ToolbarDropdown from './dropdowns/toolbar-dropdown';
-
 import './projects-toolbar.scss';
-
 // Types -------------------------------------------------------------------------------------------
 interface Params {
-	projectCount: number;
-	showOptions: string[];
-	show: string;
 	setShow: React.Dispatch<React.SetStateAction<string>>;
-	tags: { [index: string]: boolean };
 	setTags: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
-	types: { [index: string]: boolean };
 	setTypes: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
-	sortingOptions: string[];
-	sortBy: string;
 	setSortBy: React.Dispatch<React.SetStateAction<string>>;
-	sortingOrder: string[];
-	sortOrder: string;
 	setSortOrder: React.Dispatch<React.SetStateAction<string>>;
 }
 
 // Component ---------------------------------------------------------------------------------------
 export default function ProjectsToolbar({
-	projectCount,
-	showOptions,
-	show,
+	// showOptions,
 	setShow,
-	tags,
 	setTags,
-	types,
 	setTypes,
-	sortingOptions,
-	sortBy,
+	// sortingOptions,
 	setSortBy,
-	sortingOrder,
-	sortOrder,
+	// sortingOrder,
 	setSortOrder,
 }: Params) {
 	// console.log(options);
 
+	const context: ProjectBrowserContextType = useContext(ProjectBrowserContext)!;
+
 	const getShowIcon = () => {
-		switch (show) {
+		switch (context.show) {
 			case 'All':
 				return faAsterisk;
 			case 'Featured Only':
@@ -66,9 +62,9 @@ export default function ProjectsToolbar({
 	};
 
 	const getSortByIcon = () => {
-		switch (sortBy) {
+		switch (context.sortBy) {
 			case 'Alphabetical':
-				return sortOrder == 'Descending' ? faArrowDownAZ : faArrowUpZA;
+				return context.sortOrder == 'Descending' ? faArrowDownAZ : faArrowUpZA;
 			case 'Featured':
 				return faStar;
 			default:
@@ -77,7 +73,7 @@ export default function ProjectsToolbar({
 	};
 
 	const getSortOrderIcon = () => {
-		switch (sortOrder) {
+		switch (context.sortOrder) {
 			case 'Ascending':
 				return faArrowUpWideShort;
 			case 'Descending':
@@ -86,6 +82,11 @@ export default function ProjectsToolbar({
 				return faArrowDownWideShort;
 		}
 	};
+
+	const projectCount = Object.keys(context.filteredProjects).length;
+	const showOptions = Object.values(ShowOptions);
+	const sortByOptions = Object.values(SortByOptions);
+	const sortOrderOptions = Object.values(SortOrderOptions);
 
 	return (
 		<div className='projects-toolbar'>
@@ -99,23 +100,23 @@ export default function ProjectsToolbar({
 				</span>
 				<div className='dropdowns'>
 					<ToolbarDropdown
-						label={show}
+						label={context.show}
 						icon={getShowIcon()}
 						singleselectOptions={showOptions}
-						selectedOption={show}
+						selectedOption={context.show}
 						setSingleselectOption={setShow}
 						multiselect={false}
 					/>
 					<ToolbarDropdown
 						label='Tags'
 						icon={faTag}
-						multiselectOptions={tags}
+						multiselectOptions={context.tags}
 						setMultiselectOptions={setTags}
 					/>
 					<ToolbarDropdown
 						label='Types'
 						icon={faFolderOpen}
-						multiselectOptions={types}
+						multiselectOptions={context.types}
 						setMultiselectOptions={setTypes}
 					/>
 				</div>
@@ -127,18 +128,18 @@ export default function ProjectsToolbar({
 				</span>
 				<div className='dropdowns'>
 					<ToolbarDropdown
-						label={sortBy}
+						label={context.sortBy}
 						icon={getSortByIcon()}
-						singleselectOptions={sortingOptions}
-						selectedOption={sortBy}
+						singleselectOptions={sortByOptions}
+						selectedOption={context.sortBy}
 						setSingleselectOption={setSortBy}
 						multiselect={false}
 					/>
 					<ToolbarDropdown
-						label={sortOrder}
+						label={context.sortOrder}
 						icon={getSortOrderIcon()}
-						singleselectOptions={sortingOrder}
-						selectedOption={sortOrder}
+						singleselectOptions={sortOrderOptions}
+						selectedOption={context.sortOrder}
 						setSingleselectOption={setSortOrder}
 						multiselect={false}
 					/>
