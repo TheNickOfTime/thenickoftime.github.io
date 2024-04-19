@@ -90,10 +90,6 @@ export default function ProjectsToolbar({
 
 	return (
 		<div className='projects-toolbar'>
-			<div className='toolbar-section'>
-				<span>{projectCount} Projects</span>
-			</div>
-			<div className='toolbar-separator' />
 			<div className='toolbar-section toolbar-filters'>
 				<span>
 					<FontAwesomeIcon icon={faFilter} /> Filters:
@@ -144,6 +140,10 @@ export default function ProjectsToolbar({
 						multiselect={false}
 					/>
 				</div>
+			</div>
+			<div className='toolbar-separator' />
+			<div className='toolbar-section'>
+				<span>{projectCount} Projects</span>
 			</div>
 		</div>
 	);
