@@ -1,24 +1,23 @@
+/* eslint-disable react-hooks/exhaustive-deps */
+
 // Dependencies ------------------------------------------------------------------------------------
-import { /*createContext,*/ useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { Project, Projects, MultiselectOptions } from 'src/types/project';
+import { ProjectBrowserContext, ProjectBrowserContextType } from './project-browser-context';
+import { ShowOptions, SortByOptions, SortOrderOptions } from './project-browser-options';
+import FilterAndSortProjects from './project-filtering-sorting';
 
 import ProjectsToolbar from '../project-toolbar/projects-toolbar';
 import ProjectGrid from '../project-grid/project-grid';
 
-// Context -----------------------------------------------------------------------------------------
-// const ProjectBrowserContext = createContext();
-
 // Component ---------------------------------------------------------------------------------------
 export function ProjectBrowser() {
 	// Variables ---------------------------------------------------------------
-
-	// Get projects from the project folder
 	const projects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
 		eager: true,
 	});
 
-	// Get all unique tags from the projects
 	const allTags: MultiselectOptions = Object.values(projects).reduce(
 		(previous: MultiselectOptions, current: Project) => {
 			const uniqueKeys = current.metadata.tags
@@ -37,59 +36,40 @@ export function ProjectBrowser() {
 		{}
 	);
 
-	const showOptions: string[] = ['Featured Only', 'All'];
-
-	// Define sorting options & order
-	const sortingOptions: string[] = [
-		'Featured',
-		'Alphabetical',
-		// 'Date'
-	];
-
-	const sortingOrder: string[] = ['Ascending', 'Descending'];
-
 	// State -------------------------------------------------------------------
-	const [show, setShow] = useState(showOptions[0]);
+	const [filteredProjects, setFilteredProjects] = useState(Object.values(projects));
+	const [show, setShow] = useState(ShowOptions.Featured.toString());
 	const [tags, setTags] = useState(allTags);
 	const [types, setTypes] = useState(allTypes);
-	const [projectCount, setProjectCount] = useState(0);
-	const [sortBy, setSortBy] = useState(sortingOptions[0]);
-	const [sortOrder, setSortOrder] = useState(sortingOrder[1]);
+	const [sortBy, setSortBy] = useState(SortByOptions.Featured.toString());
+	const [sortOrder, setSortOrder] = useState(SortOrderOptions.Descending.toString());
+
+	const context: ProjectBrowserContextType = {
+		filteredProjects: filteredProjects,
+		show: show,
+		tags: tags,
+		types: types,
+		sortBy: sortBy,
+		sortOrder: sortOrder,
+	};
+
+	// Filtering & Sorting -----------------------------------------------------
+	useEffect(() => {
+		setFilteredProjects(FilterAndSortProjects(projects, show, tags, types, sortBy, sortOrder));
+	}, [show, tags, types, sortBy, sortOrder]);
 
 	return (
 		<div id='project-browser'>
-			{/* <ProjectBrowserContext.Provider value={context}> */}
-			<ProjectsToolbar
-				// Projects
-				projectCount={projectCount}
-				// Show
-				showOptions={showOptions}
-				show={show}
-				setShow={setShow}
-				// Tags
-				tags={tags}
-				setTags={setTags}
-				// Types
-				types={types}
-				setTypes={setTypes}
-				// Sorting
-				sortingOptions={sortingOptions}
-				sortBy={sortBy}
-				setSortBy={setSortBy}
-				sortingOrder={sortingOrder}
-				sortOrder={sortOrder}
-				setSortOrder={setSortOrder}
-			/>
-			<ProjectGrid
-				projects={projects}
-				setProjectCount={setProjectCount}
-				show={show}
-				tags={tags}
-				types={types}
-				sortBy={sortBy}
-				sortOrder={sortOrder}
-			/>
-			{/* </ProjectBrowserContext.Provider> */}
+			<ProjectBrowserContext.Provider value={context}>
+				<ProjectsToolbar
+					setShow={setShow}
+					setTags={setTags}
+					setTypes={setTypes}
+					setSortBy={setSortBy}
+					setSortOrder={setSortOrder}
+				/>
+				<ProjectGrid />
+			</ProjectBrowserContext.Provider>
 		</div>
 	);
 }
