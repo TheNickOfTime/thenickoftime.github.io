@@ -11,15 +11,12 @@ export default function Banner({ children }: PropsWithChildren) {
 	if (isOpen) {
 		return (
 			<div id='banner'>
-				<div id='banner-background' />
-				<div id='banner-main'>
-					<p id='banner-text'>{children}</p>
-					<FontAwesomeIcon
-						id='banner-button'
-						icon={faXmark}
-						onClick={() => setIsOpen(false)}
-					/>
-				</div>
+				<p id='banner-text'>{children}</p>
+				<FontAwesomeIcon
+					id='banner-button'
+					icon={faXmark}
+					onClick={() => setIsOpen(false)}
+				/>
 			</div>
 		);
 	}
