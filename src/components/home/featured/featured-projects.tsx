@@ -1,9 +1,8 @@
+import { NavLink } from 'react-router-dom';
 import { Project, Projects } from 'src/types/project';
 
-import ProjectCard from 'src/pages/projects/components/project-card/project-card';
-
+import ProjectCard from '../../projects/project-card/project-card';
 import './featured-projects.scss';
-import { NavLink } from 'react-router-dom';
 
 const ProjectCards = () => {
 	const projects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
