@@ -41,7 +41,7 @@ const filterTags = (projects: Project[], tags: MultiselectOptions) => {
 	return projects.filter((project) => {
 		// Filter Tags
 		const currentTags = Object.keys(tags).filter((key) => tags[key]);
-		const projectInTags = project.metadata.tags.some((tag) => currentTags.includes(tag));
+		const projectInTags = currentTags.every((tag) => project.metadata.tags.includes(tag));
 		return projectInTags;
 	});
 };
