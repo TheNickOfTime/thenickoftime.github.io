@@ -12,6 +12,7 @@ import {
 	faSort,
 	faStar,
 	faTag,
+	faEye,
 } from '@fortawesome/free-solid-svg-icons';
 
 import {
@@ -87,6 +88,15 @@ export default function ProjectsToolbar({
 	};
 
 	const projectCount = Object.keys(context.filteredProjects).length;
+	const tagCounts = context.filteredProjects.reduce((previous, current) => {
+		current.metadata.tags.forEach((tag) => (previous[tag] += 1));
+		return previous;
+	}, Object.fromEntries(Object.keys(context.tags).map((tag) => [tag, 0])));
+	const typeCounts = context.filteredProjects.reduce((previous, current) => {
+		previous[current.metadata.type] += 1;
+		return previous;
+	}, Object.fromEntries(Object.keys(context.types).map((type) => [type, 0])));
+
 	const showOptions = Object.values(ShowOptions);
 	const sortByOptions = Object.values(SortByOptions);
 	const sortOrderOptions = Object.values(SortOrderOptions);
@@ -94,9 +104,13 @@ export default function ProjectsToolbar({
 	return (
 		<div className='projects-toolbar'>
 			<ToolbarContext.Provider value={toolbarContext}>
-				<div className='toolbar-section toolbar-filters'>
+				<div className='toolbar-section'>
+					<span>{projectCount} Projects</span>
+				</div>
+				<div className='toolbar-separator' />
+				<div className='toolbar-section toolbar-show'>
 					<span>
-						<FontAwesomeIcon icon={faFilter} /> Filters:
+						<FontAwesomeIcon icon={faEye} /> Show:
 					</span>
 					<div className='dropdowns'>
 						<ToolbarDropdown
@@ -106,10 +120,19 @@ export default function ProjectsToolbar({
 							selectedOptions={context.show}
 							setSelectedOptions={setShow}
 						/>
+					</div>
+				</div>
+				<div className='toolbar-separator' />
+				<div className='toolbar-section toolbar-filters'>
+					<span>
+						<FontAwesomeIcon icon={faFilter} /> Filters:
+					</span>
+					<div className='dropdowns'>
 						<ToolbarDropdown
 							label='Tags'
 							icon={faTag}
 							options={Object.keys(context.tags)}
+							optionCounts={tagCounts}
 							selectedOptions={context.tags}
 							setSelectedOptions={setTags}
 						/>
@@ -117,6 +140,7 @@ export default function ProjectsToolbar({
 							label='Types'
 							icon={faFolderOpen}
 							options={Object.keys(context.types)}
+							optionCounts={typeCounts}
 							selectedOptions={context.types}
 							setSelectedOptions={setTypes}
 						/>
@@ -143,10 +167,6 @@ export default function ProjectsToolbar({
 							setSelectedOptions={setSortOrder}
 						/>
 					</div>
-				</div>
-				<div className='toolbar-separator' />
-				<div className='toolbar-section'>
-					<span>{projectCount} Projects</span>
 				</div>
 			</ToolbarContext.Provider>
 		</div>

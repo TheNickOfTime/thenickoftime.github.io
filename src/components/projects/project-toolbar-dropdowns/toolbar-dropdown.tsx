@@ -14,10 +14,9 @@ interface Params {
 	label: string;
 	icon: IconDefinition;
 	options: string[];
+	optionCounts?: { [index: string]: number };
 	selectedOptions: string | { [index: string]: boolean };
 	setSelectedOptions: React.Dispatch<React.SetStateAction<any>>;
-	// | React.Dispatch<React.SetStateAction<string>>
-	// | React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
 }
 
 // Component ---------------------------------------------------------------------------------------
@@ -25,6 +24,7 @@ export default function ToolbarDropdown({
 	label,
 	icon,
 	options,
+	optionCounts,
 	selectedOptions,
 	setSelectedOptions,
 }: Params) {
@@ -57,9 +57,12 @@ export default function ToolbarDropdown({
 				<input
 					type={isMultiselect ? 'checkbox' : 'radio'}
 					checked={optionValue}
+					disabled={optionCounts ? optionCounts[option] == 0 : false}
 					onChange={() => handleChange(option, optionValue)}
 				/>
-				<span>{option}</span>
+				<span className={optionCounts && optionCounts[option] == 0 ? 'disabled' : ''}>
+					{optionCounts ? `${option} (${optionCounts[option]})` : option}
+				</span>
 			</div>
 		);
 	};
