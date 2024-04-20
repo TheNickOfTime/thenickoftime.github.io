@@ -41,4 +41,11 @@
 			margin-bottom: 0.25rem;
 		}
 	}
+
+	.dropdown-list {
+		.dropdown-option {
+			display: flex;
+			gap: 1rem;
+		}
+	}
 }

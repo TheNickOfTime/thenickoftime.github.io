@@ -1,41 +1,82 @@
-import { useContext } from 'react';
+/* eslint-disable @typescript-eslint/no-explicit-any */
+import React, { useContext } from 'react';
 
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { IconDefinition, faCaretDown, faCaretUp } from '@fortawesome/free-solid-svg-icons';
 
-import ToolbarDropdownSingleselect from './toolbar-dropdown-singleselect';
-import ToolbarDropdownMultiselect from './toolbar-dropdown-multiselect';
 import './toolbar-dropdown.scss';
 import { ToolbarContext } from '../project-toolbar/projects-toolbar-context';
+// import { ProjectBrowserContext } from '../project-browser/project-browser-context';
+// import { string } from 'node_modules/yaml/dist/schema/common/string';
 
 // Types -------------------------------------------------------------------------------------------
 interface Params {
 	label: string;
 	icon: IconDefinition;
-	multiselect?: boolean;
-	multiselectOptions?: { [index: string]: boolean };
-	setMultiselectOptions?: React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
-	singleselectOptions?: string[];
-	selectedOption?: string;
-	setSingleselectOption?: React.Dispatch<React.SetStateAction<string>>;
+	options: string[];
+	selectedOptions: string | { [index: string]: boolean };
+	setSelectedOptions: React.Dispatch<React.SetStateAction<any>>;
+	// | React.Dispatch<React.SetStateAction<string>>
+	// | React.Dispatch<React.SetStateAction<{ [index: string]: boolean }>>;
 }
 
 // Component ---------------------------------------------------------------------------------------
 export default function ToolbarDropdown({
 	label,
 	icon,
-	multiselect = true,
-	multiselectOptions,
-	setMultiselectOptions,
-	singleselectOptions,
-	selectedOption,
-	setSingleselectOption,
+	options,
+	selectedOptions,
+	setSelectedOptions,
 }: Params) {
-	const context = useContext(ToolbarContext)!;
+	// const projectBrowserContext = useContext(ProjectBrowserContext);
+	const toolbarContext = useContext(ToolbarContext)!;
 
-	const renderList = () => context.focusedDropdown == label;
+	const renderList = () => toolbarContext.focusedDropdown == label;
 	const toggleDropdown = () => {
-		context.setFocusedDropdown(renderList() ? null : label);
+		toolbarContext.setFocusedDropdown(renderList() ? null : label);
+	};
+
+	const isMultiselect = typeof selectedOptions != 'string';
+	const sortedOptions = options.sort((a, b) =>
+		a.toLowerCase() > b.toLowerCase() ? 1 : a.toLowerCase() < b.toLowerCase() ? -1 : 0
+	);
+
+	const handleChange = (option: string, optionValue: boolean) => {
+		if (isMultiselect) {
+			const newOptions = { ...selectedOptions };
+			newOptions[option] = !optionValue;
+			setSelectedOptions(newOptions);
+		} else {
+			setSelectedOptions(option);
+		}
+	};
+
+	const DropDownOption = ({ option, optionValue }: { option: string; optionValue: boolean }) => {
+		return (
+			<div className='dropdown-option'>
+				<input
+					type={isMultiselect ? 'checkbox' : 'radio'}
+					checked={optionValue}
+					onChange={() => handleChange(option, optionValue)}
+				/>
+				<span>{option}</span>
+			</div>
+		);
+	};
+
+	const DropDownOptions = () => {
+		return (
+			<div className='dropdown-list'>
+				{sortedOptions.map((option) => (
+					<DropDownOption
+						option={option}
+						optionValue={
+							isMultiselect ? selectedOptions[option] : selectedOptions == option
+						}
+					/>
+				))}
+			</div>
+		);
 	};
 
 	return (
@@ -48,19 +89,7 @@ export default function ToolbarDropdown({
 					icon={renderList() ? faCaretUp : faCaretDown}
 				/>
 			</button>
-			{renderList() &&
-				(multiselect ? (
-					<ToolbarDropdownMultiselect
-						options={multiselectOptions!}
-						setOptions={setMultiselectOptions!}
-					/>
-				) : (
-					<ToolbarDropdownSingleselect
-						options={singleselectOptions!}
-						selectedOption={selectedOption!}
-						setSelectedOption={setSingleselectOption!}
-					/>
-				))}
+			{renderList() && <DropDownOptions />}
 		</div>
 	);
 }

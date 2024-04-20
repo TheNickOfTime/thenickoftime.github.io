@@ -102,22 +102,23 @@ export default function ProjectsToolbar({
 						<ToolbarDropdown
 							label={context.show}
 							icon={getShowIcon()}
-							singleselectOptions={showOptions}
-							selectedOption={context.show}
-							setSingleselectOption={setShow}
-							multiselect={false}
+							options={showOptions}
+							selectedOptions={context.show}
+							setSelectedOptions={setShow}
 						/>
 						<ToolbarDropdown
 							label='Tags'
 							icon={faTag}
-							multiselectOptions={context.tags}
-							setMultiselectOptions={setTags}
+							options={Object.keys(context.tags)}
+							selectedOptions={context.tags}
+							setSelectedOptions={setTags}
 						/>
 						<ToolbarDropdown
 							label='Types'
 							icon={faFolderOpen}
-							multiselectOptions={context.types}
-							setMultiselectOptions={setTypes}
+							options={Object.keys(context.types)}
+							selectedOptions={context.types}
+							setSelectedOptions={setTypes}
 						/>
 					</div>
 				</div>
@@ -130,18 +131,16 @@ export default function ProjectsToolbar({
 						<ToolbarDropdown
 							label={context.sortBy}
 							icon={getSortByIcon()}
-							singleselectOptions={sortByOptions}
-							selectedOption={context.sortBy}
-							setSingleselectOption={setSortBy}
-							multiselect={false}
+							options={sortByOptions}
+							selectedOptions={context.sortBy}
+							setSelectedOptions={setSortBy}
 						/>
 						<ToolbarDropdown
 							label={context.sortOrder}
 							icon={getSortOrderIcon()}
-							singleselectOptions={sortOrderOptions}
-							selectedOption={context.sortOrder}
-							setSingleselectOption={setSortOrder}
-							multiselect={false}
+							options={sortOrderOptions}
+							selectedOptions={context.sortOrder}
+							setSelectedOptions={setSortOrder}
 						/>
 					</div>
 				</div>
