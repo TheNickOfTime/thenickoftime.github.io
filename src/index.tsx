@@ -3,7 +3,7 @@
 // React
 import React from 'react';
 import ReactDOM from 'react-dom/client';
-import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { BrowserRouter as HashRouter, Routes, Route } from 'react-router-dom';
 
 // Styles
 import './global.scss';
@@ -22,8 +22,6 @@ import Projects from './pages/projects/projects.mdx';
 import Error404 from './pages/error/404.mdx';
 
 // Test pages
-// import MarkdownTest from './pages/test/markdown/markdown';
-// import StyleTest from './pages/test/style/style';
 import Header from './components/index/header/header';
 import Footer from './components/index/footer/footer';
 import Resume from './pages/resume/resume';
@@ -42,7 +40,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 				</a>
 				.
 			</Banner>
-			<Router>
+			<HashRouter basename='/'>
 				<Header />
 				<Navigation />
 				<Routes>
@@ -74,7 +72,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 					<Route path='/*' element={<Error404 id='error-404' />} />
 				</Routes>
 				<Footer />
-			</Router>
+			</HashRouter>
 		</main>
 	</React.StrictMode>
 );
