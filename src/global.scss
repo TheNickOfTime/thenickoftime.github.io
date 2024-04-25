@@ -14,7 +14,7 @@
 
 body {
 	// sizing
-	width: 100vw;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 
@@ -28,6 +28,9 @@ body {
 }
 
 main {
+	container-type: inline-size;
+
+	width: 100%;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -36,20 +39,17 @@ main {
 	.content {
 		flex-grow: 1;
 		max-width: 100%;
+		padding: 0 2rem;
 	}
 }
 
 @media screen and (max-width: 767px) {
-	main {
-		margin: 0 2rem;
-	}
 }
 
 @media screen and (min-width: 768px) {
 	main {
 		.content {
-			max-width: $large-max-width;
+			max-width: min(100%, $large-max-width);
 		}
-		margin: 0 auto;
 	}
 }
