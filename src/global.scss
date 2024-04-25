@@ -28,6 +28,7 @@ body {
 }
 
 main {
+	margin: 0 2rem;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -40,16 +41,12 @@ main {
 }
 
 @media screen and (max-width: 767px) {
-	main {
-		margin: 0 2rem;
-	}
 }
 
 @media screen and (min-width: 768px) {
 	main {
 		.content {
-			max-width: $large-max-width;
+			max-width: min(100%, $large-max-width);
 		}
-		margin: 0 auto;
 	}
 }
