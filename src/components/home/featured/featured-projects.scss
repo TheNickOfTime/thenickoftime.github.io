@@ -1,7 +1,7 @@
 @import '/src/styles/colors';
 @import '/src/styles/responsive';
 
-@media screen and (max-width: 767px) {
+@media screen and (max-width: $small-max-width) {
 	#projects-title {
 		margin-bottom: 1rem;
 		display: flex;
@@ -16,15 +16,17 @@
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $medium-min-width) {
 	#projects-title {
 		display: flex;
 		flex-direction: row;
 		align-items: center;
 		gap: 2rem;
+		margin: 2rem 0 1rem 0;
 
 		h1 {
-			margin-bottom: 0.25em;
+			margin: 0;
+			padding-bottom: 0.25em;
 		}
 	}
 
@@ -34,18 +36,16 @@
 		border-radius: 2rem;
 		box-shadow: 0 0 0.5rem $background-primary inset;
 
-		#project-scroll {
-			#project-cards {
-				display: flex;
-				overflow: scroll;
-				align-items: flex-start;
-				gap: 2rem;
-				padding: 2rem;
-				padding-bottom: 4rem;
+		#project-cards {
+			display: flex;
+			overflow-x: scroll;
+			align-items: flex-start;
+			gap: 2rem;
+			padding: 2rem;
+			padding-bottom: 4rem;
 
-				.project-card {
-					min-width: 400px;
-				}
+			.project-card {
+				min-width: 400px;
 			}
 		}
 	}

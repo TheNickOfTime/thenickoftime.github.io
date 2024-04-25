@@ -1,4 +1,6 @@
-@media screen and (max-width: 767px) {
+@import '/src/styles/responsive';
+
+@media screen and (max-width: $small-max-width) {
 	#project-grid {
 		display: flex;
 		flex-direction: column;
@@ -8,7 +10,17 @@
 	}
 }
 
-@media screen and (min-width: 768px) {
+@media screen and (min-width: $medium-min-width) and (max-width: $medium-max-width) {
+	#project-grid {
+		display: grid;
+		grid-template-columns: repeat(2, 1fr);
+		gap: 2rem;
+		justify-content: space-between;
+		align-items: flex-start;
+	}
+}
+
+@media screen and (min-width: $large-min-width) {
 	#project-grid {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
