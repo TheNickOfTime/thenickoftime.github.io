@@ -31,6 +31,8 @@ h5 {
 a {
 	text-decoration: none;
 	color: $color-primary;
+
+	transition: color 0.15s linear;
 }
 
 button,
@@ -43,6 +45,8 @@ button,
 	font-weight: 500;
 	background-color: $color-primary;
 	color: $background-primary;
+
+	transition: background-color 0.25s linear;
 
 	&:hover {
 		background-color: $highlight-primary;
