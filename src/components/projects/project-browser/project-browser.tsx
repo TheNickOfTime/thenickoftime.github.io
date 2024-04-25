@@ -3,7 +3,7 @@
 // Dependencies ------------------------------------------------------------------------------------
 import { useEffect, useState } from 'react';
 
-import { Project, Projects, MultiselectOptions } from 'src/types/project';
+import { Project, MultiselectOptions, ProjectMetadata } from 'src/types/project';
 import { ProjectBrowserContext, ProjectBrowserContextType } from './project-browser-context';
 import { ShowOptions, SortByOptions, SortOrderOptions } from './project-browser-options';
 import FilterAndSortProjects from './project-filtering-sorting';
@@ -14,13 +14,17 @@ import ProjectGrid from '../project-grid/project-grid';
 // Component ---------------------------------------------------------------------------------------
 export function ProjectBrowser() {
 	// Variables ---------------------------------------------------------------
-	const projects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
-		eager: true,
-	});
+	const allProjects: Project[] = Object.values(
+		import.meta.glob('/src/projects/portfolio/*.mdx', {
+			eager: true,
+		})
+	);
+	const projects: ProjectMetadata[] = allProjects.map((project: Project) => project.metadata);
+	console.log(projects);
 
 	const allTags: MultiselectOptions = Object.values(projects).reduce(
-		(previous: MultiselectOptions, current: Project) => {
-			const uniqueKeys = current.metadata.tags
+		(previous: MultiselectOptions, current: ProjectMetadata) => {
+			const uniqueKeys = current.tags
 				.filter((key: string) => !Object.keys(previous).includes(key))
 				.map((key: string) => [key, false]);
 			return { ...previous, ...Object.fromEntries(uniqueKeys) };
@@ -29,9 +33,9 @@ export function ProjectBrowser() {
 	);
 
 	const allTypes: MultiselectOptions = Object.values(projects).reduce(
-		(previous: MultiselectOptions, current: Project) => {
-			const unique = !Object.keys(previous).includes(current.metadata.type);
-			return unique ? { ...previous, ...{ [current.metadata.type]: false } } : previous;
+		(previous: MultiselectOptions, current: ProjectMetadata) => {
+			const unique = !Object.keys(previous).includes(current.type);
+			return unique ? { ...previous, ...{ [current.type]: false } } : previous;
 		},
 		{}
 	);

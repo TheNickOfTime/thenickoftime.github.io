@@ -1,11 +1,11 @@
 import { createContext } from 'react';
-import { MultiselectOptions, Project } from 'src/types/project';
+import { MultiselectOptions, ProjectMetadata } from 'src/types/project';
 // import { ShowOptions, SortByOptions, SortOrderOptions } from './project-browser-options';
 // import
 
 export interface ProjectBrowserContextType {
 	// projects: Projects;
-	filteredProjects: Project[];
+	filteredProjects: ProjectMetadata[];
 	show: string;
 	tags: MultiselectOptions;
 	types: MultiselectOptions;

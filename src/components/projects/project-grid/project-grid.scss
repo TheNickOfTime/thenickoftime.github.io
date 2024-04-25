@@ -1,7 +1,8 @@
+@import '/src/styles/colors';
 @import '/src/styles/responsive';
 
 @media screen and (max-width: $small-max-width) {
-	#project-grid {
+	#project-cards {
 		display: flex;
 		flex-direction: column;
 		gap: 2rem;
@@ -11,7 +12,7 @@
 }
 
 @media screen and (min-width: $medium-min-width) and (max-width: $medium-max-width) {
-	#project-grid {
+	#project-cards {
 		display: grid;
 		grid-template-columns: repeat(2, 1fr);
 		gap: 2rem;
@@ -21,11 +22,52 @@
 }
 
 @media screen and (min-width: $large-min-width) {
-	#project-grid {
+	#project-cards {
 		display: grid;
 		grid-template-columns: repeat(3, 1fr);
 		gap: 2rem;
 		justify-content: space-between;
 		align-items: flex-start;
+	}
+}
+
+#page-selectors {
+	width: 100%;
+	margin-top: 2rem;
+
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	// gap: 1rem;
+
+	* {
+		padding: 0.5rem;
+	}
+
+	.page-selector {
+		cursor: pointer;
+
+		&.current {
+			text-decoration: underline;
+		}
+
+		&:hover {
+			color: $color-primary;
+		}
+	}
+
+	.page-control {
+		&.disabled {
+			color: $text-secondary;
+
+			&:hover {
+				cursor: not-allowed;
+			}
+		}
+
+		&:hover:not(.disabled) {
+			cursor: pointer;
+			color: $color-primary;
+		}
 	}
 }

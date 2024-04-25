@@ -89,11 +89,11 @@ export default function ProjectsToolbar({
 
 	const projectCount = Object.keys(context.filteredProjects).length;
 	const tagCounts = context.filteredProjects.reduce((previous, current) => {
-		current.metadata.tags.forEach((tag) => (previous[tag] += 1));
+		current.tags.forEach((tag) => (previous[tag] += 1));
 		return previous;
 	}, Object.fromEntries(Object.keys(context.tags).map((tag) => [tag, 0])));
 	const typeCounts = context.filteredProjects.reduce((previous, current) => {
-		previous[current.metadata.type] += 1;
+		previous[current.type] += 1;
 		return previous;
 	}, Object.fromEntries(Object.keys(context.types).map((type) => [type, 0])));
 
