@@ -10,13 +10,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
 	faBackward,
 	faBackwardStep,
-	faCaretLeft,
-	faCaretRight,
 	faForward,
 	faForwardStep,
 } from '@fortawesome/free-solid-svg-icons';
+import { ProjectMetadata } from 'src/types/project';
 
-const Projects = ({ projects }) => {
+const Projects = ({ projects }: { projects: ProjectMetadata[] }) => {
 	return (
 		<div id='project-cards'>
 			{projects.map((project) => {
@@ -26,7 +25,15 @@ const Projects = ({ projects }) => {
 	);
 };
 
-const PageSelector = ({ pagesCount, pageIndex, setPageIndex }) => {
+const PageSelector = ({
+	pagesCount,
+	pageIndex,
+	setPageIndex,
+}: {
+	pagesCount: number;
+	pageIndex: number;
+	setPageIndex: React.Dispatch<React.SetStateAction<number>>;
+}) => {
 	return (
 		<div id='page-selectors'>
 			<FontAwesomeIcon
