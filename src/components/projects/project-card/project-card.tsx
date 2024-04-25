@@ -1,5 +1,5 @@
 import { useState } from 'react';
-import { Project } from 'src/types/project';
+import { ProjectMetadata } from 'src/types/project';
 
 import { IconDefinition } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
@@ -105,8 +105,8 @@ const Dropdown = ({ isExpanded, onClick }: { isExpanded: boolean; onClick: () =>
 };
 
 // Main components ---------------------------------------------------------------------------------
-export default function ProjectCard({ project }: { project: Project }) {
-	const href = project.metadata.links['github'];
+export default function ProjectCard({ project }: { project: ProjectMetadata }) {
+	const href = project.links['github'];
 
 	const [isExpanded, setExpanded] = useState(false);
 
@@ -116,19 +116,19 @@ export default function ProjectCard({ project }: { project: Project }) {
 
 	return (
 		<div className='project-card elevated'>
-			<ProjectImage href={href} thumbnail={project.metadata.thumb} />
+			<ProjectImage href={href} thumbnail={project.thumb} />
 			<div className='project-info'>
-				<ProjectTitle href={href} title={project.metadata.name} />
-				{project.metadata.description ? (
-					<ProjectDescription description={project.metadata.description} />
+				<ProjectTitle href={href} title={project.name} />
+				{project.description ? (
+					<ProjectDescription description={project.description} />
 				) : isExpanded ? null : (
-					<Tags tags={project.metadata.tags} />
+					<Tags tags={project.tags} />
 				)}
 				<div id='project-more-info' className={isExpanded ? 'expanded' : 'collapsed'}>
 					<h5>Tags</h5>
-					<Tags tags={project.metadata.tags} />
+					<Tags tags={project.tags} />
 					<h5>Links</h5>
-					<Quicklinks links={project.metadata.links} />
+					<Quicklinks links={project.links} />
 				</div>
 			</div>
 			<Dropdown isExpanded={isExpanded} onClick={toggleQuicklinks} />

@@ -1,9 +1,9 @@
-import { MultiselectOptions, Project, Projects } from 'src/types/project';
+import { MultiselectOptions, ProjectMetadata } from 'src/types/project';
 
-const sortAlphabetical = (projects: Project[], sortOrder: string) => {
+const sortAlphabetical = (projects: ProjectMetadata[], sortOrder: string) => {
 	const sortedProjects = projects.sort((a, b) => {
-		const after = a.metadata.name.toLowerCase() > b.metadata.name.toLowerCase();
-		const before = a.metadata.name.toLowerCase() < b.metadata.name.toLowerCase();
+		const after = a.name.toLowerCase() > b.name.toLowerCase();
+		const before = a.name.toLowerCase() < b.name.toLowerCase();
 
 		return after ? 1 : before ? -1 : 0;
 	});
@@ -11,10 +11,10 @@ const sortAlphabetical = (projects: Project[], sortOrder: string) => {
 	return sortOrder == 'Descending' ? sortedProjects : sortedProjects.reverse();
 };
 
-const sortFeatured = (projects: Project[], sortOrder: string) => {
+const sortFeatured = (projects: ProjectMetadata[], sortOrder: string) => {
 	const sortedProjects = sortAlphabetical(projects, sortOrder).sort((a, b) => {
-		const aRank = a.metadata.featured ? a.metadata.featured : Infinity;
-		const bRank = b.metadata.featured ? b.metadata.featured : Infinity;
+		const aRank = a.featured ? a.featured : Infinity;
+		const bRank = b.featured ? b.featured : Infinity;
 
 		return aRank - bRank;
 	});
@@ -22,7 +22,7 @@ const sortFeatured = (projects: Project[], sortOrder: string) => {
 	return sortedProjects;
 };
 
-const sortProjects = (projects: Project[], sortBy: string, sortOrder: string) => {
+const sortProjects = (projects: ProjectMetadata[], sortBy: string, sortOrder: string) => {
 	switch (sortBy) {
 		case 'Alphabetical':
 			return sortAlphabetical(projects, sortOrder);
@@ -33,30 +33,30 @@ const sortProjects = (projects: Project[], sortBy: string, sortOrder: string) =>
 	}
 };
 
-const filterFeatured = (projects: Project[]) => {
-	return projects.filter((project) => project.metadata.featured);
+const filterFeatured = (projects: ProjectMetadata[]) => {
+	return projects.filter((project) => project.featured);
 };
 
-const filterTags = (projects: Project[], tags: MultiselectOptions) => {
+const filterTags = (projects: ProjectMetadata[], tags: MultiselectOptions) => {
 	return projects.filter((project) => {
 		// Filter Tags
 		const currentTags = Object.keys(tags).filter((key) => tags[key]);
-		const projectInTags = currentTags.every((tag) => project.metadata.tags.includes(tag));
+		const projectInTags = currentTags.every((tag) => project.tags.includes(tag));
 		return projectInTags;
 	});
 };
 
-const filterTypes = (projects: Project[], types: MultiselectOptions) => {
+const filterTypes = (projects: ProjectMetadata[], types: MultiselectOptions) => {
 	return projects.filter((project) => {
 		// Filter types
 		const currentTypes = Object.keys(types).filter((key) => types[key]);
-		const projectInTypes = currentTypes.includes(project.metadata.type);
+		const projectInTypes = currentTypes.includes(project.type);
 		return projectInTypes;
 	});
 };
 
 const filterProjects = (
-	projects: Project[],
+	projects: ProjectMetadata[],
 	show: string,
 	tags: MultiselectOptions,
 	types: MultiselectOptions
@@ -76,14 +76,14 @@ const filterProjects = (
 };
 
 export default function FilterAndSortProjects(
-	projects: Projects,
+	projects: ProjectMetadata[],
 	show: string,
 	tags: MultiselectOptions,
 	types: MultiselectOptions,
 	sortBy: string,
 	sortOrder: string
 ) {
-	let projectsToRender = Object.values(projects);
+	let projectsToRender = projects;
 	projectsToRender = sortProjects(projectsToRender, sortBy, sortOrder);
 	projectsToRender = filterProjects(projectsToRender, show, tags, types);
 
