@@ -39,6 +39,11 @@
 
 				font-weight: 600;
 			}
+
+			&:not([aria-current='page']):hover {
+				// outline: 0.25rem solid white;
+				background-color: $background-secondary;
+			}
 		}
 	}
 }
