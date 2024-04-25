@@ -14,7 +14,7 @@
 
 body {
 	// sizing
-	width: 100vw;
+	width: 100%;
 	margin: 0;
 	padding: 0;
 
@@ -28,7 +28,9 @@ body {
 }
 
 main {
-	margin: 0 2rem;
+	container-type: inline-size;
+
+	width: 100%;
 	min-height: 100vh;
 	display: flex;
 	flex-direction: column;
@@ -37,6 +39,7 @@ main {
 	.content {
 		flex-grow: 1;
 		max-width: 100%;
+		padding: 0 2rem;
 	}
 }
 
