@@ -17,7 +17,7 @@ const ProjectCards = () => {
 		<div id='projects-container'>
 			<div id='project-cards'>
 				{featuredProjects.map((project) => (
-					<ProjectCard project={project} />
+					<ProjectCard project={project.metadata} />
 				))}
 			</div>
 		</div>
