@@ -10,7 +10,7 @@
 		position: absolute;
 		z-index: -1;
 
-		width: 100vw;
+		width: 100cqw;
 		height: 100%;
 
 		background-color: $color-primary;
@@ -30,6 +30,7 @@
 			flex-direction: column;
 			justify-content: center;
 
+			padding-left: 5%;
 			padding-bottom: 10%;
 
 			font-family: $font-secondary;
@@ -53,12 +54,7 @@
 		#hero-image {
 			max-width: 50%;
 			aspect-ratio: 1;
-
-			img {
-				object-fit: scale-down;
-				height: 100%;
-				// width: 100%;
-			}
+			display: flex;
 		}
 	}
 }

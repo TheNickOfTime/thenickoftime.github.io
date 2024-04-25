@@ -36,18 +36,16 @@
 		border-radius: 2rem;
 		box-shadow: 0 0 0.5rem $background-primary inset;
 
-		#project-scroll {
-			#project-cards {
-				display: flex;
-				overflow: scroll;
-				align-items: flex-start;
-				gap: 2rem;
-				padding: 2rem;
-				padding-bottom: 4rem;
+		#project-cards {
+			display: flex;
+			overflow-x: scroll;
+			align-items: flex-start;
+			gap: 2rem;
+			padding: 2rem;
+			padding-bottom: 4rem;
 
-				.project-card {
-					min-width: 400px;
-				}
+			.project-card {
+				min-width: 400px;
 			}
 		}
 	}

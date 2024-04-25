@@ -14,7 +14,7 @@ const ProjectCards = () => {
 	});
 
 	return (
-		<div id='project-scroll'>
+		<div id='projects-container'>
 			<div id='project-cards'>
 				{featuredProjects.map((project) => (
 					<ProjectCard project={project} />
@@ -33,9 +33,9 @@ export default function FeaturedProjects() {
 					See All Projects
 				</NavLink>
 			</div>
-			<div id='projects-container'>
-				<ProjectCards />
-			</div>
+			{/* <div id='projects-container'> */}
+			<ProjectCards />
+			{/* </div> */}
 		</div>
 	);
 }
