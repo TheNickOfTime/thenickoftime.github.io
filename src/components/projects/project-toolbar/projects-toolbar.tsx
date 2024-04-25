@@ -104,68 +104,70 @@ export default function ProjectsToolbar({
 	return (
 		<div className='projects-toolbar'>
 			<ToolbarContext.Provider value={toolbarContext}>
-				<div className='toolbar-section'>
+				<div className='toolbar-section' id='project-count'>
 					<span>{projectCount} Projects</span>
 				</div>
 				<div className='toolbar-separator' />
-				<div className='toolbar-section toolbar-show'>
-					<span>
-						<FontAwesomeIcon icon={faEye} /> Show:
-					</span>
-					<div className='dropdowns'>
-						<ToolbarDropdown
-							label={context.show}
-							icon={getShowIcon()}
-							options={showOptions}
-							selectedOptions={context.show}
-							setSelectedOptions={setShow}
-						/>
+				<div id='dropdown-sections'>
+					<div className='toolbar-section toolbar-show'>
+						<span>
+							<FontAwesomeIcon icon={faEye} /> Show:
+						</span>
+						<div className='dropdowns'>
+							<ToolbarDropdown
+								label={context.show}
+								icon={getShowIcon()}
+								options={showOptions}
+								selectedOptions={context.show}
+								setSelectedOptions={setShow}
+							/>
+						</div>
 					</div>
-				</div>
-				<div className='toolbar-separator' />
-				<div className='toolbar-section toolbar-filters'>
-					<span>
-						<FontAwesomeIcon icon={faFilter} /> Filters:
-					</span>
-					<div className='dropdowns'>
-						<ToolbarDropdown
-							label='Tags'
-							icon={faTag}
-							options={Object.keys(context.tags)}
-							optionCounts={tagCounts}
-							selectedOptions={context.tags}
-							setSelectedOptions={setTags}
-						/>
-						<ToolbarDropdown
-							label='Types'
-							icon={faFolderOpen}
-							options={Object.keys(context.types)}
-							optionCounts={typeCounts}
-							selectedOptions={context.types}
-							setSelectedOptions={setTypes}
-						/>
+					<div className='toolbar-separator' />
+					<div className='toolbar-section toolbar-filters'>
+						<span>
+							<FontAwesomeIcon icon={faFilter} /> Filters:
+						</span>
+						<div className='dropdowns'>
+							<ToolbarDropdown
+								label='Tags'
+								icon={faTag}
+								options={Object.keys(context.tags)}
+								optionCounts={tagCounts}
+								selectedOptions={context.tags}
+								setSelectedOptions={setTags}
+							/>
+							<ToolbarDropdown
+								label='Types'
+								icon={faFolderOpen}
+								options={Object.keys(context.types)}
+								optionCounts={typeCounts}
+								selectedOptions={context.types}
+								setSelectedOptions={setTypes}
+							/>
+						</div>
 					</div>
-				</div>
-				<div className='toolbar-separator' />
-				<div className='toolbar-section toolbar-sorting'>
-					<span>
-						<FontAwesomeIcon icon={faSort} /> Sorting:
-					</span>
-					<div className='dropdowns'>
-						<ToolbarDropdown
-							label={context.sortBy}
-							icon={getSortByIcon()}
-							options={sortByOptions}
-							selectedOptions={context.sortBy}
-							setSelectedOptions={setSortBy}
-						/>
-						<ToolbarDropdown
-							label={context.sortOrder}
-							icon={getSortOrderIcon()}
-							options={sortOrderOptions}
-							selectedOptions={context.sortOrder}
-							setSelectedOptions={setSortOrder}
-						/>
+					<div className='toolbar-separator' />
+					<div className='toolbar-section toolbar-sorting'>
+						<span>
+							<FontAwesomeIcon icon={faSort} /> Sorting:
+						</span>
+						<div className='dropdowns'>
+							<ToolbarDropdown
+								label={context.sortBy}
+								icon={getSortByIcon()}
+								options={sortByOptions}
+								selectedOptions={context.sortBy}
+								setSelectedOptions={setSortBy}
+							/>
+							<ToolbarDropdown
+								label={context.sortOrder}
+								icon={getSortOrderIcon()}
+								options={sortOrderOptions}
+								selectedOptions={context.sortOrder}
+								setSelectedOptions={setSortOrder}
+							/>
+						</div>
 					</div>
 				</div>
 			</ToolbarContext.Provider>

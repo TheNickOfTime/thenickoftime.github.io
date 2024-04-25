@@ -14,6 +14,7 @@ export default function Banner({ children }: PropsWithChildren) {
 				<p id='banner-text'>{children}</p>
 				<FontAwesomeIcon
 					id='banner-button'
+					className='button'
 					icon={faXmark}
 					onClick={() => setIsOpen(false)}
 				/>
