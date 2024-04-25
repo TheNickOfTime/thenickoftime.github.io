@@ -28,6 +28,83 @@ const linkLookup: LinkData = {
 	codespace: { icon: faDocker, label: 'Open in Github Codespace' },
 };
 
+// Sub-components ----------------------------------------------------------------------------------
+const ProjectImage = ({ href, thumbnail }: { href: string; thumbnail: string }) => {
+	return (
+		<a className='project-image' href={href} target='_blank'>
+			<img className='project-image' src={thumbnail} alt='' />
+		</a>
+	);
+};
+
+const ProjectTitle = ({ href, title }: { href: string; title: string }) => {
+	return (
+		<h3 className='project-name'>
+			<a href={href} target='_blank'>
+				{title}
+			</a>
+		</h3>
+	);
+};
+
+const ProjectDescription = ({ description }: { description: string }) => {
+	return <p className='project-description'>{description}</p>;
+};
+
+const Tags = ({ tags }: { tags: string[] }) => {
+	// console.log(projectTags);
+	const tagsSorted = tags.sort((a, b) => {
+		const after = a.toLowerCase() > b.toLowerCase();
+		const before = a.toLowerCase() < b.toLowerCase();
+
+		return after ? 1 : before ? -1 : 0;
+	});
+	return (
+		<div className='project-tags'>
+			{tagsSorted.map((tag: string) => {
+				return (
+					<span className='project-tag' key={tag}>
+						<FontAwesomeIcon className='tag-icon' icon={faTag} />
+						<span className='tag-label'>{tag}</span>
+					</span>
+				);
+			})}
+		</div>
+	);
+};
+
+const Quicklinks = ({ links }: { links: { [index: string]: string } }) => {
+	return (
+		<div className='project-quicklinks'>
+			{Object.entries(links).map((entry) => {
+				const link = entry[1];
+				const linkData = linkLookup[entry[0]];
+				// console.log(linkData);
+				return (
+					<a className='button quicklink-button' href={link} target='_blank'>
+						<FontAwesomeIcon className='quicklink-icon' icon={linkData.icon} />
+						<span className='quicklink-label'>{linkData.label}</span>
+					</a>
+				);
+			})}
+		</div>
+	);
+};
+
+const Dropdown = ({ isExpanded, onClick }: { isExpanded: boolean; onClick: () => void }) => {
+	return (
+		<button className='project-quicklink-dropdown' onClick={onClick}>
+			<span className='quicklink-label'>{isExpanded ? 'See Less' : 'See More'}</span>
+			{isExpanded ? (
+				<FontAwesomeIcon icon={faCaretUp} />
+			) : (
+				<FontAwesomeIcon icon={faCaretDown} />
+			)}
+		</button>
+	);
+};
+
+// Main components ---------------------------------------------------------------------------------
 export default function ProjectCard({ project }: { project: Project }) {
 	const href = project.metadata.links['github'];
 
@@ -37,109 +114,24 @@ export default function ProjectCard({ project }: { project: Project }) {
 		setExpanded(!isExpanded);
 	};
 
-	const ProjectImage = () => {
-		return (
-			<a className='project-image' href={href} target='_blank'>
-				<img className='project-image' src={project.metadata.thumb} alt='' />
-			</a>
-		);
-	};
-
-	const ProjectTitle = () => {
-		return (
-			<h3 className='project-name'>
-				<a href={href} target='_blank'>
-					{project.metadata.name}
-				</a>
-			</h3>
-		);
-	};
-
-	const ProjectDescription = () => {
-		if (project.metadata.description) {
-			return <p className='project-description'>{project.metadata.description}</p>;
-		} else {
-			if (!isExpanded) {
-				return <Tags />;
-			}
-		}
-	};
-
-	const Dropdown = () => {
-		return (
-			<div className='project-quicklink-dropdown' onClick={toggleQuicklinks}>
-				<span className='quicklink-label'>{isExpanded ? 'See Less' : 'See More'}</span>
-				{isExpanded ? (
-					<FontAwesomeIcon icon={faCaretUp} />
-				) : (
-					<FontAwesomeIcon icon={faCaretDown} />
-				)}
-			</div>
-		);
-	};
-
-	const Tags = () => {
-		// console.log(projectTags);
-		const tagsSorted = project.metadata.tags.sort((a, b) => {
-			const after = a.toLowerCase() > b.toLowerCase();
-			const before = a.toLowerCase() < b.toLowerCase();
-
-			return after ? 1 : before ? -1 : 0;
-		});
-		return (
-			<div className='project-tags'>
-				{tagsSorted.map((tag: string) => {
-					return (
-						<span className='project-tag' key={tag}>
-							<FontAwesomeIcon className='tag-icon' icon={faTag} />
-							<span className='tag-label'>{tag}</span>
-						</span>
-					);
-				})}
-			</div>
-		);
-	};
-
-	const Quicklinks = () => {
-		return (
-			<div className='project-quicklinks'>
-				{Object.entries(project.metadata.links).map((entry) => {
-					const link = entry[1];
-					const linkData = linkLookup[entry[0]];
-					// console.log(linkData);
-					return (
-						<a className='button quicklink-button' href={link} target='_blank'>
-							<FontAwesomeIcon className='quicklink-icon' icon={linkData.icon} />
-							<span className='quicklink-label'>{linkData.label}</span>
-						</a>
-					);
-				})}
-			</div>
-		);
-	};
-
-	const ProjectDetails = () => {
-		if (isExpanded) {
-			return (
-				<div className='project-more-info'>
-					<h5>Tags</h5>
-					<Tags />
-					<h5>Links</h5>
-					<Quicklinks />
-				</div>
-			);
-		}
-	};
-
 	return (
 		<div className='project-card elevated'>
-			<ProjectImage />
+			<ProjectImage href={href} thumbnail={project.metadata.thumb} />
 			<div className='project-info'>
-				<ProjectTitle />
-				<ProjectDescription />
-				<ProjectDetails />
+				<ProjectTitle href={href} title={project.metadata.name} />
+				{project.metadata.description ? (
+					<ProjectDescription description={project.metadata.description} />
+				) : isExpanded ? null : (
+					<Tags tags={project.metadata.tags} />
+				)}
+				<div id='project-more-info' className={isExpanded ? 'expanded' : 'collapsed'}>
+					<h5>Tags</h5>
+					<Tags tags={project.metadata.tags} />
+					<h5>Links</h5>
+					<Quicklinks links={project.metadata.links} />
+				</div>
 			</div>
-			<Dropdown />
+			<Dropdown isExpanded={isExpanded} onClick={toggleQuicklinks} />
 		</div>
 	);
 }
