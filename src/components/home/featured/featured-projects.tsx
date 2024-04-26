@@ -3,8 +3,11 @@ import { Project, Projects } from 'src/types/project';
 
 import ProjectCard from '../../projects/project-card/project-card';
 import './featured-projects.scss';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCaretLeft, faCaretRight, faCircle } from '@fortawesome/free-solid-svg-icons';
+import { useState } from 'react';
 
-const ProjectCards = () => {
+const Gallery = () => {
 	const projects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
 		eager: true,
 	});
@@ -13,12 +16,63 @@ const ProjectCards = () => {
 		return project.metadata.featured;
 	});
 
+	const [galleryIndex, setGalleryIndex] = useState(0);
+
+	const handleButtonClick = (direction: number) => {
+		const newIndex = Math.min(
+			Math.max(galleryIndex + direction, 0),
+			featuredProjects.length - 1
+		);
+
+		setGalleryIndex(newIndex);
+	};
+
+	const handleBulletClick = (newIndex: number) => {
+		setGalleryIndex(newIndex);
+	};
+
 	return (
-		<div id='projects-container'>
-			<div id='project-cards'>
-				{featuredProjects.map((project) => (
-					<ProjectCard project={project} />
-				))}
+		<div id='gallery-container'>
+			<div className='gallery-button' id='previous'>
+				<button onClick={() => handleButtonClick(-1)}>
+					<FontAwesomeIcon icon={faCaretLeft} size='2x' />
+				</button>
+			</div>
+			<div id='gallery'>
+				<div id='gallery-cards'>
+					{featuredProjects.map((project, index) => (
+						<div
+							className={`card-container ${
+								index == galleryIndex - 1
+									? 'previous'
+									: index == galleryIndex
+									? 'primary'
+									: index == galleryIndex + 1
+									? 'secondary'
+									: index == galleryIndex + 2
+									? 'next'
+									: 'hidden'
+							}`}
+						>
+							<ProjectCard project={project.metadata} />
+						</div>
+					))}
+				</div>
+				<div id='gallery-bullets'>
+					{featuredProjects.map((_, index) => (
+						<FontAwesomeIcon
+							className={index == galleryIndex ? 'current' : ''}
+							icon={faCircle}
+							size='2xs'
+							onClick={() => handleBulletClick(index)}
+						/>
+					))}
+				</div>
+			</div>
+			<div className='gallery-button' id='next'>
+				<button onClick={() => handleButtonClick(1)}>
+					<FontAwesomeIcon icon={faCaretRight} size='2x' />
+				</button>
 			</div>
 		</div>
 	);
@@ -34,7 +88,7 @@ export default function FeaturedProjects() {
 				</NavLink>
 			</div>
 			{/* <div id='projects-container'> */}
-			<ProjectCards />
+			<Gallery />
 			{/* </div> */}
 		</div>
 	);
