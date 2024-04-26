@@ -9,10 +9,37 @@
 		align-items: flex-start;
 	}
 
-	#project-cards {
-		display: flex;
-		flex-direction: column;
-		gap: 2rem;
+	#gallery-container {
+		position: relative;
+
+		#gallery {
+			gap: 4rem !important;
+
+			#gallery-cards {
+				margin: 0 2rem;
+
+				.previous,
+				.secondary,
+				.next,
+				.hidden {
+					display: none;
+				}
+			}
+		}
+
+		.gallery-button {
+			position: absolute !important;
+			background: none !important;
+			bottom: 2rem;
+
+			&#previous {
+				left: 5%;
+			}
+
+			&#next {
+				right: 5%;
+			}
+		}
 	}
 }
 
@@ -29,37 +56,129 @@
 			padding-bottom: 0.25em;
 		}
 	}
+}
 
-	#projects-container {
-		max-width: 100%;
-		background-color: $background-secondary;
-		border-radius: 2rem;
-		box-shadow: 0 0 0.5rem $background-primary inset;
+@media screen and (min-width: $medium-min-width) and (max-width: $medium-max-width) {
+	#gallery-container {
+		#gallery-cards {
+			grid-template-columns: repeat(3, 70%);
 
-		#project-cards {
-			display: flex;
-			overflow-x: scroll;
-			align-items: flex-start;
-			gap: 2rem;
-			padding: 2rem;
-			padding-bottom: 4rem;
+			.previous {
+				grid-column: 1/2;
+			}
 
-			.project-card {
-				min-width: 400px;
+			.primary {
+				grid-column: 2/3;
+			}
+
+			.secondary {
+				grid-column: 3/4;
+			}
+
+			.next,
+			.hidden {
+				display: none;
 			}
 		}
 	}
 }
 
-#projects-title {
-	#all-projects {
-		border: 0.25rem solid $color-primary;
-		background-color: transparent;
-		color: $color-primary;
+@media screen and (min-width: $large-min-width) {
+	#gallery-cards {
+		grid-template-columns: repeat(4, 40%);
 
-		&:hover {
-			background-color: $color-primary;
-			color: $background-primary;
+		.previous {
+			grid-column: 1/2;
+		}
+
+		.primary {
+			grid-column: 2/3;
+		}
+
+		.secondary {
+			grid-column: 3/4;
+		}
+
+		.next {
+			grid-column: 4/5;
+		}
+
+		.hidden {
+			display: none;
+		}
+	}
+}
+
+#featured-projects {
+	#projects-title {
+		#all-projects {
+			border: 0.25rem solid $color-primary;
+			background-color: transparent;
+			color: $color-primary;
+
+			&:hover {
+				background-color: $color-primary;
+				color: $background-primary;
+			}
+		}
+	}
+
+	#gallery-container {
+		display: flex;
+		flex-direction: row;
+		flex-wrap: nowrap;
+		overflow: hidden;
+
+		background-color: $background-secondary;
+		border-radius: 2rem;
+		box-shadow: 0 0 1rem $background-shadow inset;
+
+		#gallery {
+			display: flex;
+			flex-direction: column;
+			// justify-content: center;
+			align-items: center;
+			gap: 3rem;
+			padding: 3rem 0;
+
+			#gallery-cards {
+				display: grid;
+				justify-content: center;
+				gap: 2rem;
+			}
+
+			#gallery-bullets {
+				display: flex;
+				gap: 1rem;
+
+				color: $text-secondary;
+
+				.current {
+					color: $text-primary;
+				}
+			}
+		}
+
+		.gallery-button {
+			display: flex;
+			align-items: center;
+			position: relative;
+			z-index: 1;
+
+			&#previous {
+				padding-left: 3rem;
+				background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
+			}
+
+			&#next {
+				padding-right: 3rem;
+				background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
+			}
+
+			button {
+				width: 4rem;
+				aspect-ratio: 1;
+			}
 		}
 	}
 }
