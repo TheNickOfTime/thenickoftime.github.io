@@ -12,9 +12,11 @@ const Gallery = () => {
 		eager: true,
 	});
 
-	const featuredProjects: Project[] = Object.values(projects).filter((project) => {
-		return project.metadata.featured;
-	});
+	const featuredProjects: Project[] = Object.values(projects)
+		.filter((project) => {
+			return project.metadata.featured;
+		})
+		.sort((a, b) => a.metadata.featured - b.metadata.featured);
 
 	const [galleryIndex, setGalleryIndex] = useState(0);
 
