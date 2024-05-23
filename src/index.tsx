@@ -13,7 +13,7 @@ import '@fontsource/material-icons';
 import '@fortawesome/react-fontawesome';
 
 //Components
-import Banner from './components/index/banner/banner';
+// import Banner from './components/index/banner/banner';
 import Navigation from './components/index/navigation/navigation';
 
 // Pages
@@ -30,7 +30,7 @@ import Resume from './pages/resume/resume';
 ReactDOM.createRoot(document.getElementById('root')!).render(
 	<React.StrictMode>
 		<main>
-			<Banner>
+			{/* <Banner>
 				This page is under active development. See development{' '}
 				<a
 					href='https://github.com/TheNickOfTime/thenickoftime.github.io/tree/dev'
@@ -39,7 +39,7 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 					here
 				</a>
 				.
-			</Banner>
+			</Banner> */}
 			<HashRouter basename='/'>
 				<Header />
 				<Navigation />
