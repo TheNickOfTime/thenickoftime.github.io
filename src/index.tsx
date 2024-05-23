@@ -17,7 +17,7 @@ import Banner from './components/index/banner/banner';
 import Navigation from './components/index/navigation/navigation';
 
 // Pages
-import Home from './pages/home/home.mdx';
+import Home from './pages/home/home.tsx';
 import Projects from './pages/projects/projects.mdx';
 import Error404 from './pages/error/404.mdx';
 
