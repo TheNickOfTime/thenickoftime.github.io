@@ -7,16 +7,12 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faCaretLeft, faCaretRight, faCircle } from '@fortawesome/free-solid-svg-icons';
 import { useState } from 'react';
 
-const Gallery = () => {
-	const projects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
+const Gallery = ({ projects }: { projects: string[] }) => {
+	const importedProjects: Projects = import.meta.glob('/src/projects/portfolio/*.mdx', {
 		eager: true,
 	});
 
-	const featuredProjects: Project[] = Object.values(projects)
-		.filter((project) => {
-			return project.metadata.featured;
-		})
-		.sort((a, b) => a.metadata.featured - b.metadata.featured);
+	const featuredProjects: Project[] = projects.map((project) => importedProjects[project]);
 
 	const [galleryIndex, setGalleryIndex] = useState(0);
 
@@ -80,17 +76,22 @@ const Gallery = () => {
 	);
 };
 
-export default function FeaturedProjects() {
+type Params = {
+	title: string;
+	projects: string[];
+};
+
+export default function FeaturedProjects({ title, projects }: Params) {
 	return (
 		<div id='featured-projects'>
 			<div id='projects-title'>
-				<h1>Featured Projects</h1>
+				<h1>{title}</h1>
 				<NavLink id='all-projects' className='button' to='/projects'>
 					See All Projects
 				</NavLink>
 			</div>
 			{/* <div id='projects-container'> */}
-			<Gallery />
+			<Gallery projects={projects} />
 			{/* </div> */}
 		</div>
 	);

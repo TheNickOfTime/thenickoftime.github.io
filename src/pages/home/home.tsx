@@ -9,7 +9,26 @@ export default function Home() {
 		<>
 			<Hero />
 			<SocialLinks />
-			<FeaturedProjects />
+			<FeaturedProjects
+				title='Featured Web Projects'
+				projects={[
+					'/src/projects/portfolio/handbrake-web.mdx',
+					'/src/projects/portfolio/dev-portfolio.mdx',
+					'/src/projects/portfolio/games-portfolio.mdx',
+					'/src/projects/portfolio/pokemon-search-app.mdx',
+					'/src/projects/portfolio/realtime-multiplayer-game.mdx',
+					'/src/projects/portfolio/rock-paper-scissors.mdx',
+				]}
+			/>
+			<FeaturedProjects
+				title='Featured Game Projects'
+				projects={[
+					'/src/projects/portfolio/thorb.mdx',
+					'/src/projects/portfolio/dungeon-of-greyness.mdx',
+					'/src/projects/portfolio/escape-room.mdx',
+					'/src/projects/portfolio/gravity-box.mdx',
+				]}
+			/>
 		</>
 	);
 }
