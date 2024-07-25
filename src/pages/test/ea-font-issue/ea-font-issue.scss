@@ -1,0 +1,54 @@
+@use 'src/styles/colors';
+
+@font-face {
+	font-family: 'ElectronicArtsTextOriginal';
+	src: url('ElectronicArtsText-RegularOriginal.otf');
+	font-style: normal;
+	font-weight: 400;
+}
+
+@font-face {
+	font-family: 'ElectronicArtsTextNew';
+	src: url('ElectronicArtsText-RegularNew.otf');
+	font-style: normal;
+	font-weight: 400;
+}
+
+#ea-font-issue-page {
+	.fonts {
+		margin-top: 2.5rem;
+
+		.table-scroll {
+			overflow-x: scroll;
+			padding-bottom: 1rem;
+
+			table {
+				width: 100%;
+				font-family: sans-serif;
+				text-align: center;
+				border-collapse: collapse;
+				border: 1px solid grey;
+
+				th {
+					background-color: grey;
+					color: colors.$background-primary;
+				}
+
+				th,
+				td {
+					border: 1px solid grey;
+					white-space: nowrap;
+					padding: 0.25rem 1rem;
+				}
+
+				tbody > tr > td:nth-child(2) {
+					font-family: ElectronicArtsTextOriginal !important;
+				}
+
+				tbody > tr > td:nth-child(3) {
+					font-family: ElectronicArtsTextNew !important;
+				}
+			}
+		}
+	}
+}
