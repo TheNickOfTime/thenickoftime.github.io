@@ -1,4 +1,6 @@
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import './ea-font-issue.scss';
+import { faFont } from '@fortawesome/free-solid-svg-icons';
 
 export default function EAFontIssue() {
 	return (
@@ -54,6 +56,12 @@ export default function EAFontIssue() {
 						</tbody>
 					</table>
 				</div>
+			</div>
+			<div className='download'>
+				<a className='button' href='./ElectronicArtsText-RegularNew.otf' download>
+					<FontAwesomeIcon icon={faFont} />
+					<span>Download Fixed Font</span>
+				</a>
 			</div>
 		</div>
 	);
