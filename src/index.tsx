@@ -25,6 +25,7 @@ import Error404 from './pages/error/404.mdx';
 import Header from './components/index/header/header';
 import Footer from './components/index/footer/footer';
 import Resume from './pages/resume/resume';
+import EAFontIssue from './pages/test/ea-font-issue/ea-font-issue.tsx';
 
 // App ---------------------------------------------------------------------------------------------
 ReactDOM.createRoot(document.getElementById('root')!).render(
@@ -66,6 +67,14 @@ ReactDOM.createRoot(document.getElementById('root')!).render(
 						element={
 							<div className='content' id='resume'>
 								<Resume />
+							</div>
+						}
+					/>
+					<Route
+						path='/ea-font-issue'
+						element={
+							<div className='content' id='ea-font-issue'>
+								<EAFontIssue />
 							</div>
 						}
 					/>
