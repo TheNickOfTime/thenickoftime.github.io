@@ -106,7 +106,7 @@ const Dropdown = ({ isExpanded, onClick }: { isExpanded: boolean; onClick: () =>
 
 // Main components ---------------------------------------------------------------------------------
 export default function ProjectCard({ project }: { project: ProjectMetadata }) {
-	const href = project.links['github'];
+	const href = project.link ? project.link : project.links['github'];
 
 	const [isExpanded, setExpanded] = useState(false);
 
