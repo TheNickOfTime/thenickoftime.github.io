@@ -131,7 +131,7 @@
 
 		background-color: $background-secondary;
 		border-radius: 2rem;
-		box-shadow: 0 0 1rem $background-shadow inset;
+		// box-shadow: 0 0 1rem $background-shadow inset;
 
 		#gallery {
 			display: flex;
@@ -166,12 +166,12 @@
 			z-index: 1;
 
 			&#previous {
-				padding-left: 3rem;
+				padding: 0 3rem;
 				background: linear-gradient(to right, rgba(0, 0, 0, 0.5), transparent);
 			}
 
 			&#next {
-				padding-right: 3rem;
+				padding: 0 3rem;
 				background: linear-gradient(to left, rgba(0, 0, 0, 0.5), transparent);
 			}
 

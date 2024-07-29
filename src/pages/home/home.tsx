@@ -20,7 +20,7 @@ export default function Home() {
 					'/src/projects/portfolio/rock-paper-scissors.mdx',
 				]}
 			/>
-			<FeaturedProjects
+			{/* <FeaturedProjects
 				title='Featured Game Projects'
 				projects={[
 					'/src/projects/portfolio/thorb.mdx',
@@ -28,7 +28,7 @@ export default function Home() {
 					'/src/projects/portfolio/escape-room.mdx',
 					'/src/projects/portfolio/gravity-box.mdx',
 				]}
-			/>
+			/> */}
 		</>
 	);
 }
